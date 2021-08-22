@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" standalone="yes"?>
+
+<MapViewerConfig>
+
+	<!-- 糸島半島 -->
+	<Center Longitude="130.1611" Latitude="33.5722"/>
+	<!-- 10進 -->
+
+	<!-- 島原半島 -->
+	<_Center Longitude="130 18 0.0" Latitude="32 45 40.0"/>
+
+	<!-- 桜島 -->
+	<_Center Longitude="130 38 30.0" Latitude="31 35 0.0"/>
+	<!-- 度分秒 -->
+
+	<!-- 天竜川(経度帯境界付近) -->
+	<_Center Longitude="138.0" Latitude="35.0"/>
+
+	<!-- 伊豆山 -->
+	<_Center Longitude="139 05 0.0" Latitude="35 07 0.0"/>
+
+	<!-- 八王子 -->
+	<_Center Longitude="139.3" Latitude="35.65"/>
+
+	<!-- 仙台Sta正門中央(JGD2011確認用) -->
+	<!-- ●国土地理院タイルはJGD2011(補正済み)か。-->
+	<_Center Longitude="140.9207" Latitude ="38.26119"/>
+
+	<!-- ●以下のパスは相対パスまたは絶対パスのいずれかで指定する。-->
+
+	<!-- 地図データ -->
+	<!-- このフォルダのgsi以下の各フォルダに必要なズームレベルのフォルダが自動作成され、必要な国土地理院タイルがダウンロードされる。-->
+	<_MapData Folder="C:/DSF/MapData"/>
+	<MapData Folder="."/>
+
+	<!-- ◆保留 -->
+	<_DrawingData File="C:/DSF/SharedData/MapView/MapDrawing/MapDrawing_test_1.xml"/>
+	<DrawingData File="./MapDrawing_test_1.xml"/>
+
+	<!-- ◆保留 -->
+	<!-- ◆フォルダ内のすべてのファイルを描画するやり方 -->
+	<_DrawingData Folder="C:/DSF/SharedData/MapView/MapDrawing"/>
+
+</MapViewerConfig>

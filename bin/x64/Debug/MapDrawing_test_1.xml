@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" standalone="yes"?>
+
+<MapDrawings>
+
+	<!-- 地雷原1 -->
+	<MineField Type="ATAP" Depth="500" FrontEdgeDirection="RightToLeft">
+		<FrontEdgePos Longitude="130.154" Latitude="33.562"/>
+		<FrontEdgePos Longitude="130.158" Latitude="33.562"/>
+	</MineField>
+
+	<!-- 地雷原2 -->
+	<MineField Type="AT" Depth="500" FrontEdgeDirection="RightToLeft">
+		<FrontEdgePos Longitude="130.158" Latitude="33.566"/>
+		<FrontEdgePos Longitude="130.162" Latitude="33.566"/>
+		<FrontEdgePos Longitude="130.160" Latitude="33.564"/>
+	</MineField>
+
+	<!-- 地雷原3 -->
+	<MineField Type="AP" Depth="500" FrontEdgeDirection="RightToLeft">
+		<FrontEdgePos Longitude="130.154" Latitude="33.572"/>
+		<FrontEdgePos Longitude="130.158" Latitude="33.570"/>
+		<FrontEdgePos Longitude="130.162" Latitude="33.570"/>
+		<FrontEdgePos Longitude="130.164" Latitude="33.568"/>
+	</MineField>
+
+	<!-- 地雷原4 -->
+	<!-- ◆072160を間違えて090160とかにしたら明らかにおかしな形状になった。方向が反転？-->
+	<MineField Type="ATAP" Depth="500" FrontEdgeDirection="RightToLeft">
+		<FrontEdgePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="0680016000"/>
+		<FrontEdgePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="07001600"/>
+		<FrontEdgePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="072160"/>
+		<FrontEdgePos Longitude="130.158" Latitude="33.574"/>
+		<FrontEdgePos Longitude="130.162" Latitude="33.574"/>
+		<FrontEdgePos Longitude="130.164" Latitude="33.576"/>
+	</MineField>
+
+	<!-- 防御陣地1 -->
+	<!-- スプライン曲線 -->
+	<!-- ◆スプライン曲線はすべての頂点を通るため、頂点を増やすと凹部ができがち。-->
+	<DefensivePosition UnitLevel="Bn" Type="Spline">
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="07951620"/>
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="07801610"/>
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08001600"/>
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08201610"/>
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08051620"/>
+	</DefensivePosition>
+
+	<!-- 防御陣地2 -->
+	<!-- ベジェ曲線 -->
+	<DefensivePosition UnitLevel="Bn" Type="Bezier">
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08551620"/> <!-- sp -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08451620"/> <!-- sp_ctrl -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08401615"/> <!-- node1_ctrl1 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08401610"/> <!-- node1 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08401605"/> <!-- node1_ctrl2 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08501600"/> <!-- node2_ctrl1 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08601600"/> <!-- node2 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08701600"/> <!-- node2_ctrl2 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08801605"/> <!-- node3_ctrl1 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08801610"/> <!-- node3 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08801615"/> <!-- node3_ctrl2 -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08751620"/> <!-- ep_ctrl -->
+		<CurvePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="08651620"/> <!-- ep -->
+	</DefensivePosition>
+
+</MapDrawings>
