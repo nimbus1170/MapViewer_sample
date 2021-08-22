@@ -1,0 +1,13 @@
+﻿[*.{cs,vb}]
+
+# IDE0049: 名前を単純化します
+dotnet_style_predefined_type_for_locals_parameters_members = false:silent
+
+# IDE0047: 不要なかっこの削除
+dotnet_diagnostic.IDE0047.severity = none
+
+# IDE0049: 名前を単純化します
+dotnet_style_predefined_type_for_member_access = false:silent
+
+# IDE0055: 書式設定を修正します。
+dotnet_diagnostic.IDE0055.severity = none
