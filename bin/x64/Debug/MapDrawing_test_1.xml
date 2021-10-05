@@ -4,23 +4,23 @@
 
 	<!-- 地雷原1 -->
 	<MineField Type="ATAP" Depth="500" FrontEdgeDirection="RightToLeft">
-		<FrontEdgePos Longitude="130.154" Latitude="33.562"/>
-		<FrontEdgePos Longitude="130.158" Latitude="33.562"/>
+		<FrontEdgePos Lg="130.154" Lt="33.562"/>
+		<FrontEdgePos Lg="130.158" Lt="33.562"/>
 	</MineField>
 
 	<!-- 地雷原2 -->
 	<MineField Type="AT" Depth="500" FrontEdgeDirection="RightToLeft">
-		<FrontEdgePos Longitude="130.158" Latitude="33.566"/>
-		<FrontEdgePos Longitude="130.162" Latitude="33.566"/>
-		<FrontEdgePos Longitude="130.160" Latitude="33.564"/>
+		<FrontEdgePos Lg="130.158" Lt="33.566"/>
+		<FrontEdgePos Lg="130.162" Lt="33.566"/>
+		<FrontEdgePos Lg="130.160" Lt="33.564"/>
 	</MineField>
 
 	<!-- 地雷原3 -->
 	<MineField Type="AP" Depth="500" FrontEdgeDirection="RightToLeft">
-		<FrontEdgePos Longitude="130.154" Latitude="33.572"/>
-		<FrontEdgePos Longitude="130.158" Latitude="33.570"/>
-		<FrontEdgePos Longitude="130.162" Latitude="33.570"/>
-		<FrontEdgePos Longitude="130.164" Latitude="33.568"/>
+		<FrontEdgePos Lg="130.154" Lt="33.572"/>
+		<FrontEdgePos Lg="130.158" Lt="33.570"/>
+		<FrontEdgePos Lg="130.162" Lt="33.570"/>
+		<FrontEdgePos Lg="130.164" Lt="33.568"/>
 	</MineField>
 
 	<!-- 地雷原4 -->
@@ -29,9 +29,9 @@
 		<FrontEdgePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="0680016000"/>
 		<FrontEdgePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="07001600"/>
 		<FrontEdgePos UTM_Zone="52S" MGRS_ID="FC" UTM_Value="072160"/>
-		<FrontEdgePos Longitude="130.158" Latitude="33.574"/>
-		<FrontEdgePos Longitude="130.162" Latitude="33.574"/>
-		<FrontEdgePos Longitude="130.164" Latitude="33.576"/>
+		<FrontEdgePos Lg="130.158" Lt="33.574"/>
+		<FrontEdgePos Lg="130.162" Lt="33.574"/>
+		<FrontEdgePos Lg="130.164" Lt="33.576"/>
 	</MineField>
 
 	<!-- 防御陣地1 -->

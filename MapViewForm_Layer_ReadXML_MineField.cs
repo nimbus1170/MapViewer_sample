@@ -5,12 +5,11 @@
 // ●XML描画データから地雷原を読み込む。
 //
 //---------------------------------------------------------------------------
-using DSF_NET_Geography;
 using DSF_NET_Map;
 using DSF_NET_TacticalDrawing;
 
-using static DSF_NET_Geography.Convert_Tude_UTM;
-using static DSF_NET_TacticalDrawing.ReadXML;
+using static DSF_NET_Geography.Convert_LgLt_UTM;
+using static DSF_NET_TacticalDrawing.XMLReader;
 
 using System.Collections.Generic;
 using System.Drawing;
@@ -49,17 +48,17 @@ public partial class CMapViewForm : Form
 				foreach(XmlNode i_front_edge_pos in front_edge_pos)
 				{
 					// ◆経緯度かUTMのいずれか。
-					// →◆ReadXML側でToTudeすると良いか？
+					// →◆ReadXML側でToLgLtすると良いか？
 					{
-						CTude tude = ReadTude(i_front_edge_pos);
+						var lglt = ReadLgLt(i_front_edge_pos);
 
-						if(tude != null) minefield.AddFrontEdgePos(tude);
+						if(lglt != null) minefield.AddFrontEdgePos(lglt);
 					}
 
 					{
-						CUTM utm = ReadUTM(i_front_edge_pos);
+						var utm = ReadUTM(i_front_edge_pos);
 
-						if(utm != null) minefield.AddFrontEdgePos(ToTude(utm));
+						if(utm != null) minefield.AddFrontEdgePos(ToLgLt(utm));
 					}
 				}
 

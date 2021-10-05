@@ -5,10 +5,8 @@
 // ●XML描画データから防御陣地を読み込む。
 //
 //---------------------------------------------------------------------------
-using DSF_NET_Geography;
-
-using static DSF_NET_Geography.Convert_Tude_UTM;
-using static DSF_NET_TacticalDrawing.ReadXML;
+using static DSF_NET_Geography.Convert_LgLt_UTM;
+using static DSF_NET_TacticalDrawing.XMLReader;
 
 using System.Drawing;
 using System.Xml;
@@ -37,17 +35,17 @@ public partial class CMapViewForm : Form
 				foreach(XmlNode i_curve_pos in curve_pos)
 				{
 					// ◆経緯度かUTMのいずれか。
-					// →◆ReadXML側でToTudeすると良いか？
+					// →◆ReadXML側でToLgLtすると良いか？
 					{ 
-						var tude = ReadTude(i_curve_pos);
+						var lglt = ReadLgLt(i_curve_pos);
 
-						if(tude != null) defensive_position.AddCurvePos(tude);
+						if(lglt != null) defensive_position.AddCurvePos(lglt);
 					}
 
 					{
 						var utm = ReadUTM(i_curve_pos);
 
-						if(utm != null)	defensive_position.AddCurvePos(ToTude(utm));
+						if(utm != null)	defensive_position.AddCurvePos(ToLgLt(utm));
 					}
 				}
 
@@ -63,17 +61,17 @@ public partial class CMapViewForm : Form
 				foreach(XmlNode i_curve_pos in curve_pos)
 				{
 					// ◆経緯度かUTMのいずれか。
-					// →◆ReadXML側でToTudeすると良いか？
+					// →◆ReadXML側でToLgLtすると良いか？
 					{ 
-						var tude = ReadTude(i_curve_pos);
+						var lglt = ReadLgLt(i_curve_pos);
 
-						if(tude != null) defensive_position.AddCurvePos(tude);
+						if(lglt != null) defensive_position.AddCurvePos(lglt);
 					}
 
 					{
 						var utm = ReadUTM(i_curve_pos);
 
-						if(utm != null)	defensive_position.AddCurvePos(ToTude(utm));
+						if(utm != null)	defensive_position.AddCurvePos(ToLgLt(utm));
 					}
 				}
 

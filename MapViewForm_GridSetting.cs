@@ -21,40 +21,39 @@ public partial class CMapViewForm : Form
 	// ▼XMLファイル等で設定しろ。
 	void SetGridSetting()
 	{
-		// ◆ズームレベル10～18はとりあえず固定
-		for(Int32 zoom_level = 10; zoom_level <= 18; ++zoom_level)
+		for(var zoom_level = TileMap.ZoomLevel_Min; zoom_level <= TileMap.ZoomLevel_Max; ++zoom_level)
 		{
 			// 経緯度グリッド設定を設定する。
 
-			var tude_grid_elements = new Dictionary<Int32, CMapGridElement>();
+			var lglt_grid_elements = new Dictionary<Int32, CMapGridElement>();
 
 			switch(zoom_level)
 			{
 				case 10:
-					tude_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
 					break;
 
 				case 11:
 				case 12:
-					tude_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
 					break;
 
 				case 13:
 				case 14:
-					tude_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
-					tude_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
 					break;
 
 				case 15:
 				case 16:
 				case 17:
 				case 18:
-					tude_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
-					tude_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
 					break;
 			};
 
-			TileMap.TudeGridSetting.Add(zoom_level, tude_grid_elements);
+			TileMap.LgLtGridSetting.Add(zoom_level, lglt_grid_elements);
 
 			// UTMグリッド設定を設定する。
 

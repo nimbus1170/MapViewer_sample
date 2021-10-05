@@ -3,11 +3,9 @@
 // レイヤ
 //
 //---------------------------------------------------------------------------
-using DSF_NET_Geography;
 using DSF_NET_Map;
 
 using System.Collections.Generic;
-using System.Drawing;
 using System.Xml;
 using System.Windows.Forms;
 //---------------------------------------------------------------------------

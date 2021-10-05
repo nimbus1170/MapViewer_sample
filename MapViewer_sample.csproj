@@ -75,24 +75,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DSF_NET_GSIImageTileMap">
-      <HintPath>..\..\..\..\..\bin\DSF_NET_GSIImageTileMap.dll</HintPath>
+      <HintPath>..\..\..\..\lib\DSF_NET_GSIImageTileMap.dll</HintPath>
     </Reference>
     <Reference Include="DSF_NET_GSITileDownloader">
       <HintPath>..\..\..\..\..\bin\DSF_NET_GSITileDownloader.dll</HintPath>
     </Reference>
-    <Reference Include="DSF_NET_MapGrid">
-      <HintPath>..\..\..\..\..\bin\DSF_NET_MapGrid.dll</HintPath>
+    <Reference Include="DSF_NET_MapGridOnTile">
+      <HintPath>..\..\..\..\lib\DSF_NET_MapGridOnTile.dll</HintPath>
     </Reference>
-    <Reference Include="DSF_NET_MapGridOnTile, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\DSF_NET_MapGridOnTile.dll</HintPath>
-    </Reference>
-    <Reference Include="DSF_NET_Scene, Version=1.0.7904.33698, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\DSF_NET_Scene.dll</HintPath>
+    <Reference Include="DSF_NET_Scene">
+      <HintPath>..\..\..\..\lib\DSF_NET_Scene.dll</HintPath>
     </Reference>
     <Reference Include="DSF_NET_TacticalDrawing">
-      <HintPath>..\..\..\..\..\bin\DSF_NET_TacticalDrawing.dll</HintPath>
+      <HintPath>..\..\..\..\lib\DSF_NET_TacticalDrawing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
