@@ -83,7 +83,8 @@
     <Reference Include="DSF_NET_MapGridOnTile">
       <HintPath>..\..\..\..\lib\DSF_NET_MapGridOnTile.dll</HintPath>
     </Reference>
-    <Reference Include="DSF_NET_Scene">
+    <Reference Include="DSF_NET_Scene, Version=1.0.7994.37799, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\DSF_NET_Scene.dll</HintPath>
     </Reference>
     <Reference Include="DSF_NET_TacticalDrawing">
@@ -160,6 +161,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Scene\NET_DLL_Scene\NET_DLL_Scene.vcxproj">
+      <Project>{995da7f0-4239-4e7f-b97b-f15b30eacf53}</Project>
+      <Name>NET_DLL_Scene</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

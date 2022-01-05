@@ -4,46 +4,6 @@
         "NET_DLL_Scene"
     </assembly>
     <members>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.ToMGRSCoord(System.Int32!System.Runtime.CompilerServices.IsConst,System.Char!System.Runtime.CompilerServices.IsConst,System.Double!System.Runtime.CompilerServices.IsConst,System.Double!System.Runtime.CompilerServices.IsConst)">
-            <summary>MGRS形式UTM座標文字列に変換する。</summary>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.IsValidMGRSCoord(System.String!System.Runtime.CompilerServices.IsConst)">
-            <summary>MGRS形式UTM座標を表す文字列か否か判定する。</summary>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.GetMGRSID(DSF_NET_Geography.CUTM)">
-            <summary>MGRSID(100km平方識別子)を取得する。</summary>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.ToMGRSCoord(DSF_NET_Geography.CUTM)">
-            <summary>MGRS形式UTM座標に変換する。</summary>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.ToUTM(System.Int32!System.Runtime.CompilerServices.IsConst,System.Char!System.Runtime.CompilerServices.IsConst,System.String!System.Runtime.CompilerServices.IsConst,System.Double!System.Runtime.CompilerServices.IsConst,System.Double!System.Runtime.CompilerServices.IsConst,DSF_NET_Geography.CAltitude!System.Runtime.CompilerServices.IsConst)">
-            <summary>MGRS形式UTM座標をUTM座標に変換する。</summary>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.ToUTM(System.Int32!System.Runtime.CompilerServices.IsConst,System.Char!System.Runtime.CompilerServices.IsConst,System.String!System.Runtime.CompilerServices.IsConst,System.Double!System.Runtime.CompilerServices.IsConst,System.Double!System.Runtime.CompilerServices.IsConst)">
-            <summary>MGRS形式UTM座標をUTM座標に変換する。</summary>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.ToUTM(System.Int32!System.Runtime.CompilerServices.IsConst,System.Char!System.Runtime.CompilerServices.IsConst,System.String!System.Runtime.CompilerServices.IsConst,DSF_NET_Geography.CAltitude!System.Runtime.CompilerServices.IsConst)">
-            <summary>MGRS形式UTM座標をUTM座標に変換する。</summary>
-            <param name="lg_zone">経度帯</param>
-            <param name="lt_zone">緯度帯</param>
-            <param name="mgrs_coord">
-MGRS形式UTM座標文字列
-MGRSID(100km平方識別子) + 東西座標(10km～1mの5桁) + 南北座標(10km～1mの5桁)(例:GM0500082500)
-</param>
-            <param name="altitude">高度</param>
-        </member>
-        <member name="M:DSF_NET_Geography.Convert_MGRS_UTM.ToUTM(System.Int32!System.Runtime.CompilerServices.IsConst,System.Char!System.Runtime.CompilerServices.IsConst,System.String!System.Runtime.CompilerServices.IsConst)">
-            <summary>MGRS形式UTM座標をUTM座標に変換する。</summary>
-            <param name="lg_zone">経度帯</param>
-            <param name="lt_zone">緯度帯</param>
-            <param name="mgrs_coord">
-MGRS形式UTM座標文字列
-MGRSID(100km平方識別子) + 東西座標(10km～1mの5桁) + 南北座標(10km～1mの5桁)(例:GM0500082500)
-</param>
-        </member>
-        <member name="T:DSF_NET_Geography.Convert_MGRS_UTM">
-            <summary>MGRS形式UTM座標 ⇔ UTM座標</summary>
-        </member>
         <member name="M:DSF_NET_Geography.CElevationMapData_GSI_DEM_PNG.#ctor(System.String!System.Runtime.CompilerServices.IsConst,DSF_NET_Geography.CTile!System.Runtime.CompilerServices.IsConst,DSF_NET_Geography.CTile!System.Runtime.CompilerServices.IsConst)">
             <summary>標高地図データクラス(GSI_DEM_PNG形式)</summary>
             <param name="gsi_dem5a_png_fldname">標高タイルのフォルダ名(ズームレベルを除く。)</param>

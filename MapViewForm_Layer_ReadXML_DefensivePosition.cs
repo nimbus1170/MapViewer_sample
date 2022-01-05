@@ -5,9 +5,12 @@
 // ●XML描画データから防御陣地を読み込む。
 //
 //---------------------------------------------------------------------------
+using DSF_NET_Map;
+
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_TacticalDrawing.XMLReader;
 
+using System;
 using System.Drawing;
 using System.Xml;
 using System.Windows.Forms;
@@ -20,63 +23,76 @@ public partial class CMapViewForm : Form
 	// 防御陣地レイヤ
 	void SetLayers_ReadXML_DefensivePosition(in XmlNode drawing_xml_node, in int layer_hash)
 	{
-		var defensive_position_nodes = drawing_xml_node.SelectNodes("MapDrawings/DefensivePosition");
+		var defensive_position_xml_nodes = drawing_xml_node.SelectNodes("MapDrawings/DefensivePosition");
 
-		foreach(XmlNode defensive_position_node in defensive_position_nodes)
+		foreach(XmlNode defensive_position_xml_node in defensive_position_xml_nodes)
 		{
-			var type = defensive_position_node.Attributes["Type"].InnerText;
+			var type_str = defensive_position_xml_node.Attributes["Type"].InnerText;
 			
-			if(type == "Spline")
-			{
-				var curve_pos = defensive_position_node.SelectNodes("CurvePos");
+			var type = 
+				(type_str == "Spline"	)? DDefensivePositionDrawType.Spline   :
+				(type_str == "Bezier"	)? DDefensivePositionDrawType.Bezier   :
+				(type_str == "RoundRect")? DDefensivePositionDrawType.RoundRect:
+										   DDefensivePositionDrawType.Unknown  ;
 
-				DSF_NET_Map.CDefensivePosition defensive_position = new DSF_NET_Map.CDefensivePosition(Color.Red, 2, DSF_NET_Map.DDefensivePositionDrawType.Spline);
+			// ◆取り敢えず何もしない。
+			if(type == DDefensivePositionDrawType.Unknown) return;
 
-				foreach(XmlNode i_curve_pos in curve_pos)
-				{
-					// ◆経緯度かUTMのいずれか。
-					// →◆ReadXML側でToLgLtすると良いか？
-					{ 
-						var lglt = ReadLgLt(i_curve_pos);
+			var defensive_position = new CDefensivePosition(Color.Red, 2, type);
 
-						if(lglt != null) defensive_position.AddCurvePos(lglt);
-					}
+			switch(type)
+			{ 
+				case DDefensivePositionDrawType.Spline:
+				case DDefensivePositionDrawType.Bezier:
+				{ 
+					var border_nodes = defensive_position_xml_node.SelectNodes("BorderNode");
 
+					foreach(XmlNode border_node in border_nodes)
 					{
-						var utm = ReadUTM(i_curve_pos);
+						var lglt = ReadLgLt(border_node);
 
-						if(utm != null)	defensive_position.AddCurvePos(ToLgLt(utm));
+						if(lglt == null)
+						{
+							var utm = ReadUTM(border_node);
+
+							if(utm != null)
+								lglt = ToLgLt(utm);
+							else
+								throw new Exception("illegal defensive position border node expression");
+						}
+
+						defensive_position.AddBorderNode(lglt);
 					}
+
+					break;
 				}
 
-				TileMap.DrawingLayers[layer_hash].Add(defensive_position);
-			}
-
-			if(type == "Bezier")
-			{
-				var curve_pos = defensive_position_node.SelectNodes("CurvePos");
-
-				DSF_NET_Map.CDefensivePosition defensive_position = new DSF_NET_Map.CDefensivePosition(Color.Red, 2, DSF_NET_Map.DDefensivePositionDrawType.Bezier);
-
-				foreach(XmlNode i_curve_pos in curve_pos)
+				case DDefensivePositionDrawType.RoundRect:
 				{
-					// ◆経緯度かUTMのいずれか。
-					// →◆ReadXML側でToLgLtすると良いか？
-					{ 
-						var lglt = ReadLgLt(i_curve_pos);
+					var front_edge_nodes = defensive_position_xml_node.SelectNodes("FrontEdgeNode");
 
-						if(lglt != null) defensive_position.AddCurvePos(lglt);
-					}
-
+					foreach(XmlNode front_edge_node in front_edge_nodes)
 					{
-						var utm = ReadUTM(i_curve_pos);
+						var lglt = ReadLgLt(front_edge_node);
 
-						if(utm != null)	defensive_position.AddCurvePos(ToLgLt(utm));
+						if(lglt == null)
+						{
+							var utm = ReadUTM(front_edge_node);
+
+							if(utm != null)
+								lglt = ToLgLt(utm);
+							else
+								throw new Exception("illegal defensive position front edge node expression");
+						}
+
+						defensive_position.AddBorderNode(lglt);
 					}
-				}
 
-				TileMap.DrawingLayers[layer_hash].Add(defensive_position);
+					break;
+				}
 			}
+
+			TileMap.DrawingLayers[layer_hash].Add(defensive_position);
 		}
 	}
 }

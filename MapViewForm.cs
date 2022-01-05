@@ -111,7 +111,7 @@ public partial class CMapViewForm : Form
 	void MapPictureBox_MouseMove(Object sender, MouseEventArgs e)
 	{
 		mouseLabel.Left = e.X + 10;
-		mouseLabel.Top = e.Y;
+		mouseLabel.Top = e.Y + 40;
 
 		UpdateMouseInfo(e);
 
@@ -216,9 +216,9 @@ public partial class CMapViewForm : Form
 		var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt));
 
 		infoLabel.Text =
-			$"中心 {ct_lg.Value:000.0000}E ({ct_lg_dms.Deg:000}°{ct_lg_dms.Min:00}′{ct_lg_dms.Sec:00.0000}″E)\n" +
-			$"　　 {ct_lt.Value: 00.0000}N ({ct_lt_dms.Deg: 00}°{ct_lt_dms.Min:00}′{ct_lt_dms.Sec:00.0000}″N)\n" +
-			$"　　 {ct_utm.LgZone}{ct_utm.LtZone} {GetMGRSID(ct_utm)} {GetMGRSCoordEW(ct_utm):00000} {GetMGRSCoordNS(ct_utm):00000}\n" +
+			$"中心 {ct_lg.Value:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
+			$"　　 {ct_lt.Value: 00.0000}N (北緯{ct_lt_dms.Deg: 00}度{ct_lt_dms.Min:00}分{ct_lt_dms.Sec:00.00}秒)\n" +
+			$"　　 {ct_utm.LgBand}{GetLtBand(ToLgLt(ct_utm).Lt)} {GetMGR(ct_utm)} {GetMGRSUTM_EW(ct_utm):00000} {GetMGRSUTM_NS(ct_utm):00000}\n" +
 			$"\n" +
 			$"ズームレベル{ct_wp_x.ZoomLevel} {TileMap.ZoomValue:0.00}倍\n" +
 			$"中心ピクセル {(int)(ct_wp_x.Value)} {(int)(ct_wp_y.Value)}\n" +
@@ -239,9 +239,9 @@ public partial class CMapViewForm : Form
 		var ms_utm = ToUTM(new CLgLt(ms_lg, ms_lt));
 
 		mouseLabel.Text =
-			$"{ms_lg.Value:000.0000}E ({ms_lg_dms.Deg:000}°{ms_lg_dms.Min:00}′{ms_lg_dms.Sec:00.0000}″E)\n" +
-			$"{ms_lt.Value: 00.0000}N ({ms_lt_dms.Deg: 00}°{ms_lt_dms.Min:00}′{ms_lt_dms.Sec:00.0000}″N)\n" +
-			$"{ms_utm.LgZone}{ms_utm.LtZone} {GetMGRSID(ms_utm)} {GetMGRSCoordEW(ms_utm):00000} {GetMGRSCoordNS(ms_utm):00000}\n" +
+			$"{ms_lg.Value:000.0000}E (東経{ms_lg_dms.Deg:000}度{ms_lg_dms.Min:00}分{ms_lg_dms.Sec:00.00}秒)\n" +
+			$"{ms_lt.Value: 00.0000}N (北緯{ms_lt_dms.Deg: 00}度{ms_lt_dms.Min:00}分{ms_lt_dms.Sec:00.00}秒)\n" +
+			$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGR(ms_utm)} {GetMGRSUTM_EW(ms_utm):00000} {GetMGRSUTM_NS(ms_utm):00000}\n" +
 			$"{e.X:000} {e.Y:000}";
 	}
 }
