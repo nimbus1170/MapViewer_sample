@@ -3,20 +3,20 @@
 <MapDrawings>
 
 	<!-- 地雷原1 -->
-	<MineField Type="ATAP" Depth="500" FrontEdgeDirection="RightToLeft">
+	<MineField Type="ATAP" Depth="100" FrontEdgeDirection="RightToLeft">
 		<FrontEdgeNode Lg="130.154" Lt="33.562"/>
 		<FrontEdgeNode Lg="130.158" Lt="33.562"/>
 	</MineField>
 
 	<!-- 地雷原2 -->
-	<MineField Type="AT" Depth="500" FrontEdgeDirection="RightToLeft">
+	<MineField Type="AT" Depth="200" FrontEdgeDirection="RightToLeft">
 		<FrontEdgeNode Lg="130.158" Lt="33.566"/>
 		<FrontEdgeNode Lg="130.162" Lt="33.566"/>
 		<FrontEdgeNode Lg="130.160" Lt="33.564"/>
 	</MineField>
 
 	<!-- 地雷原3 -->
-	<MineField Type="AP" Depth="500" FrontEdgeDirection="RightToLeft">
+	<MineField Type="AP" Depth="200" FrontEdgeDirection="RightToLeft">
 		<FrontEdgeNode Lg="130.154" Lt="33.572"/>
 		<FrontEdgeNode Lg="130.158" Lt="33.570"/>
 		<FrontEdgeNode Lg="130.162" Lt="33.570"/>
@@ -25,7 +25,7 @@
 
 	<!-- 地雷原4 -->
 	<!-- ◆072160を間違えて090160とかにしたら明らかにおかしな形状になった。方向が反転？-->
-	<MineField Type="ATAP" Depth="500" FrontEdgeDirection="RightToLeft">
+	<MineField Type="ATAP" Depth="200" FrontEdgeDirection="RightToLeft">
 		<FrontEdgeNode UTM="52S FC 0680016000"/>
 		<FrontEdgeNode UTM="52S FC 07001600"/>
 		<FrontEdgeNode UTM="52S FC 072160"/>
@@ -36,8 +36,8 @@
 
 	<!-- 防御陣地1 -->
 	<!-- スプライン曲線 -->
-	<!-- ◆スプライン曲線はすべての頂点を通るため、頂点を増やすと凹部ができがち。-->
-	<DefensivePosition UnitLevel="Bn" Type="Spline">
+	<!-- ◆スプライン曲線はすべての点を通るため、点を増やすと凹部ができがち。-->
+	<DefensivePosition UnitLevel="Co" Type="Spline">
 		<BorderNode UTM="52S FC 07951620"/>
 		<BorderNode UTM="52S FC 07801610"/>
 		<BorderNode UTM="52S FC 08001600"/>
@@ -47,30 +47,38 @@
 
 	<!-- 防御陣地2 -->
 	<!-- ベジェ曲線 -->
-	<DefensivePosition UnitLevel="Bn" Type="Bezier">
+	<DefensivePosition UnitLevel="Co" Type="Bezier">
 		<BorderNode UTM="52S FC 08551620"/> <!-- sp -->
 		<BorderNode UTM="52S FC 08451620"/> <!-- sp_ctrl -->
-		<BorderNode UTM="52S FC 08401615"/> <!-- node1_ctrl1 -->
-		<BorderNode UTM="52S FC 08401610"/> <!-- node1 -->
-		<BorderNode UTM="52S FC 08401605"/> <!-- node1_ctrl2 -->
-		<BorderNode UTM="52S FC 08501600"/> <!-- node2_ctrl1 -->
-		<BorderNode UTM="52S FC 08601600"/> <!-- node2 -->
-		<BorderNode UTM="52S FC 08701600"/> <!-- node2_ctrl2 -->
-		<BorderNode UTM="52S FC 08801605"/> <!-- node3_ctrl1 -->
-		<BorderNode UTM="52S FC 08801610"/> <!-- node3 -->
-		<BorderNode UTM="52S FC 08801615"/> <!-- node3_ctrl2 -->
+		<BorderNode UTM="52S FC 08401615"/> <!-- node_1_ctrl_1 -->
+		<BorderNode UTM="52S FC 08401610"/> <!-- node_1 -->
+		<BorderNode UTM="52S FC 08401605"/> <!-- node_1_ctrl_2 -->
+		<BorderNode UTM="52S FC 08501600"/> <!-- node_2_ctrl1 -->
+		<BorderNode UTM="52S FC 08601600"/> <!-- node_2 -->
+		<BorderNode UTM="52S FC 08701600"/> <!-- node_2_ctrl_2 -->
+		<BorderNode UTM="52S FC 08801605"/> <!-- node_3_ctrl_1 -->
+		<BorderNode UTM="52S FC 08801610"/> <!-- node_3 -->
+		<BorderNode UTM="52S FC 08801615"/> <!-- node_3_ctrl_2 -->
 		<BorderNode UTM="52S FC 08751620"/> <!-- ep_ctrl -->
 		<BorderNode UTM="52S FC 08651620"/> <!-- ep -->
 	</DefensivePosition>
 
 	<!-- 防御陣地3 -->
-	<!-- 丸め矩形 -->
-	<DefensivePosition UnitLevel="Bn" Type="RoundRect" Depth="300">
-		<FrontEdgeNode UTM="52S FC 08451570"/>
-		<FrontEdgeNode UTM="52S FC 08301550"/>
-		<FrontEdgeNode UTM="52S FC 08501550"/>
-		<FrontEdgeNode UTM="52S FC 08701550"/>
-		<FrontEdgeNode UTM="52S FC 08551570"/>
+	<!-- 隅を丸めた矩形 -->
+	<!-- ◆取り敢えず正面幅,縦深,方向で指定 -->
+	<DefensivePosition UnitLevel="Co" Type="RoundRect"
+		Width="800"
+		Depth="400"
+		Direction="400"
+		RectR="160">
+		<FrontEdgeNode UTM="52S FC 08501550"/> <!-- 前縁中央 -->
 	</DefensivePosition>
+
+	<!-- 共通描画設定 -->
+	<!-- Color : ARGB -->
+	<DrawAttribute
+		Color="ffff0000"
+		LineWidth="2"
+	/>
 
 </MapDrawings>

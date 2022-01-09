@@ -10,9 +10,12 @@ using DSF_NET_TacticalDrawing;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_TacticalDrawing.XMLReader;
 
+using System;
 using System.Drawing;
 using System.Xml;
 using System.Windows.Forms;
+
+using static System.Convert;
 //---------------------------------------------------------------------------
 namespace MapView_test
 {
@@ -36,12 +39,14 @@ public partial class CMapViewForm : Form
 									  
 			if(type == DMineFieldType.Unknown) return; // ◆取り敢えず。
 	
+			var depth = ToInt32(minefield_xml_node.Attributes["Depth"].InnerText);
+
 			var dir_str = minefield_xml_node.Attributes["FrontEdgeDirection"].InnerText;
 			
 			var dir =
 				(dir_str == "LeftToRight")? DMineFieldFrontEdgeDirection.LeftToRight: 
 				(dir_str == "RightToLeft")? DMineFieldFrontEdgeDirection.RightToLeft:
-											DMineFieldFrontEdgeDirection.Unknown	;			
+											DMineFieldFrontEdgeDirection.Unknown	;		
 			
 			if(dir == DMineFieldFrontEdgeDirection.Unknown) return; // ◆取り敢えず。
 
@@ -50,7 +55,7 @@ public partial class CMapViewForm : Form
 				var front_edge_node = minefield_xml_node.SelectNodes("FrontEdgeNode");
 
 				// ◆DSF_NET_TacticalDrawing.CMineFieldとDSF_NET_Map.CMineFieldで曖昧になっている。
-				var minefield = new DSF_NET_Map.CMineField(type, 200, dir, Color.Red, 2);
+				var minefield = new DSF_NET_Map.CMineField(type, depth, dir, Color.Red, 2);
 
 				foreach(XmlNode front_edge_node_i in front_edge_node)
 				{
@@ -63,7 +68,7 @@ public partial class CMapViewForm : Form
 						if(utm != null)
 							lglt = ToLgLt(utm);
 						else
-							throw new System.Exception("illegal mine field front edge node expression");
+							throw new Exception("illegal mine field front edge node expression");
 					}
 
 					minefield.AddFrontEdgeNode(lglt);
