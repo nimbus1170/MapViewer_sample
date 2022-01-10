@@ -78,7 +78,7 @@ public partial class CMapViewForm : Form
 		CMapForm_Resize(null, null);
 
 		// Graphicsオブジェクト作成後に実行可能となる。
-		DrawLayers();
+		DrawMapImage();
 	}
 
 	void CMapForm_Resize(object sender, EventArgs e)
@@ -111,7 +111,7 @@ public partial class CMapViewForm : Form
 	void MapPictureBox_MouseMove(Object sender, MouseEventArgs e)
 	{
 		mouseLabel.Left = e.X + 10;
-		mouseLabel.Top = e.Y + 40;
+		mouseLabel.Top  = e.Y + 40;
 
 		UpdateMouseInfo(e);
 

@@ -112,12 +112,6 @@
     <Compile Include="MapViewForm_Layer_Observer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapViewForm_Layer_ReadXML_DefensivePosition.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MapViewForm_Layer_ReadXML_MineField.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MapViewForm.resx">
