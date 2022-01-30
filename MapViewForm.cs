@@ -210,14 +210,14 @@ public partial class CMapViewForm : Form
 		var ct_lg = ToLg(ct_wp_x);
 		var ct_lt = ToLt(ct_wp_y);
 
-		var ct_lg_dms = new CDMS(ct_lg.Value);
-		var ct_lt_dms = new CDMS(ct_lt.Value);
+		var ct_lg_dms = new CDMS(ct_lg.DecimalDeg);
+		var ct_lt_dms = new CDMS(ct_lt.DecimalDeg);
 
 		var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt));
 
 		infoLabel.Text =
-			$"中心 {ct_lg.Value:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
-			$"　　 {ct_lt.Value: 00.0000}N (北緯{ct_lt_dms.Deg: 00}度{ct_lt_dms.Min:00}分{ct_lt_dms.Sec:00.00}秒)\n" +
+			$"中心 {ct_lg.DecimalDeg:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
+			$"　　 {ct_lt.DecimalDeg: 00.0000}N (北緯{ct_lt_dms.Deg: 00}度{ct_lt_dms.Min:00}分{ct_lt_dms.Sec:00.00}秒)\n" +
 			$"　　 {ct_utm.LgBand}{GetLtBand(ToLgLt(ct_utm).Lt)} {GetMGR(ct_utm)} {GetMGRSUTM_EW(ct_utm):00000} {GetMGRSUTM_NS(ct_utm):00000}\n" +
 			$"\n" +
 			$"ズームレベル{ct_wp_x.ZoomLevel} {TileMap.ZoomValue:0.00}倍\n" +
@@ -233,14 +233,14 @@ public partial class CMapViewForm : Form
 		var ms_lg = ToLg(TileMap.CenterWP.X + (e.X - mapPictureBox.Width  / 2) / TileMap.ZoomValue);
 		var ms_lt = ToLt(TileMap.CenterWP.Y + (e.Y - mapPictureBox.Height / 2) / TileMap.ZoomValue);
 
-		var ms_lg_dms = new CDMS(ms_lg.Value);
-		var ms_lt_dms = new CDMS(ms_lt.Value);
+		var ms_lg_dms = new CDMS(ms_lg.DecimalDeg);
+		var ms_lt_dms = new CDMS(ms_lt.DecimalDeg);
 
 		var ms_utm = ToUTM(new CLgLt(ms_lg, ms_lt));
 
 		mouseLabel.Text =
-			$"{ms_lg.Value:000.0000}E (東経{ms_lg_dms.Deg:000}度{ms_lg_dms.Min:00}分{ms_lg_dms.Sec:00.00}秒)\n" +
-			$"{ms_lt.Value: 00.0000}N (北緯{ms_lt_dms.Deg: 00}度{ms_lt_dms.Min:00}分{ms_lt_dms.Sec:00.00}秒)\n" +
+			$"{ms_lg.DecimalDeg:000.0000}E (東経{ms_lg_dms.Deg:000}度{ms_lg_dms.Min:00}分{ms_lg_dms.Sec:00.00}秒)\n" +
+			$"{ms_lt.DecimalDeg: 00.0000}N (北緯{ms_lt_dms.Deg: 00}度{ms_lt_dms.Min:00}分{ms_lt_dms.Sec:00.00}秒)\n" +
 			$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGR(ms_utm)} {GetMGRSUTM_EW(ms_utm):00000} {GetMGRSUTM_NS(ms_utm):00000}\n" +
 			$"{e.X:000} {e.Y:000}";
 	}

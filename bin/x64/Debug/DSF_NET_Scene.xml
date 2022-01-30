@@ -36,30 +36,34 @@
         <member name="M:DSF_NET_Geometry.CLine.IsCross3D(DSF_NET_Geometry.CLine!System.Runtime.CompilerServices.IsConst,DSF_NET_Geometry.CLine!System.Runtime.CompilerServices.IsConst,System.Double@,System.Double@)">
             <summary>
 ２直線が交差するか否かを判定する。(3D)
-交差の成否に関わらず、line1の始点からの割合がrate1に、line2の始点からの割合がrate2に入る。
+交差の成否に関わらず、line1の始点から交点までの距離の割合がrate1に、line2の始点からの交点までの距離の割合がrate2に入る。
+したがって、
+    rate &lt; 0 : 交点が始点方向の線分外にある。
+0 &lt; rate &lt; 1 : 交点が線分内にある。(交差する。)
+1 &lt; rate     : 交点が終点方向の線分外にある。
 </summary>
-            <param name="line1">直線１</param>
-            <param name="line2">直線２</param>
-            <param name="rate1">直線１上の交差位置</param>
-            <param name="rate2">直線２上の交差位置</param>
+            <param name="line1">線分1</param>
+            <param name="line2">線分2</param>
+            <param name="rate_to_cross_point_on_line1_from_p1_as_0_to_p2_as_1">線分1上の交差位置</param>
+            <param name="rate_to_cross_point_on_line2_from_p1_as_0_to_p2_as_1">線分2上の交差位置</param>
             <returns>交差の有無</returns>
             <summary>
-２直線が交差するか否かを判定する。(3D)
+2直線が交差するか否かを判定する。(3D)
 交差の成否に関わらず、line1の始点からの割合がrate1に、line2の始点からの割合がrate2に入る。
 </summary>
-            <param name="line1">直線１</param>
-            <param name="line2">直線２</param>
+            <param name="line1">直線1</param>
+            <param name="line2">直線2</param>
             <returns>交差の有無</returns>
         </member>
         <member name="M:DSF_NET_Geometry.CLine.IsCross2D(DSF_NET_Geometry.CLine!System.Runtime.CompilerServices.IsConst,DSF_NET_Geometry.CLine!System.Runtime.CompilerServices.IsConst,DSF_NET_Geometry.CCoord@)">
             <summary>2直線が交差するか否かを判定する。(2D)</summary>
-            <remarks>交差したらxpに交点が入る。</remarks>
+            <remarks>交差したらcross_pに交点が入る。</remarks>
             <returns>交差の有無</returns>
         </member>
         <member name="M:DSF_NET_Geometry.CLine.ExtendP1(System.Double!System.Runtime.CompilerServices.IsConst)">
             <summary>線分をそれぞれの方向に伸縮させる。</summary>
         </member>
-        <member name="M:DSF_NET_Geometry.CLine.Length2D">
+        <member name="P:DSF_NET_Geometry.CLine.Length2D">
             <summary>線分の長さ</summary>
         </member>
         <member name="T:DSF_NET_Geometry.CLine">

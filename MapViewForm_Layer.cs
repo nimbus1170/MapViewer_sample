@@ -5,6 +5,9 @@
 //---------------------------------------------------------------------------
 using DSF_NET_Map;
 
+using static DSF_NET_TacticalDrawing.CMineField;
+using static DSF_NET_TacticalDrawing.CDefensivePosition;
+
 using System.Collections.Generic;
 using System.Xml;
 using System.Windows.Forms;
@@ -17,14 +20,14 @@ public partial class CMapViewForm : Form
 	readonly int  DrawingLayer1_Hash =  "DrawingLayer1".GetHashCode();
 	readonly int ObserverLayer1_Hash = "ObserverLayer1".GetHashCode();
 
-	void SetLayers(in XmlNode DrawingXML)
+	void SetLayers(in XmlNode drawing_xml_node)
 	{
 		//--------------------------------------------------
 		// 図形描画レイヤ
 
 		var drawing_layer = new HashSet<CDrawing>();
 
-		var map_drawing_group_xml_nodes = DrawingXML.SelectNodes("MapDrawings/MapDrawingGroup");
+		var map_drawing_group_xml_nodes = drawing_xml_node.SelectNodes("MapDrawings/MapDrawingGroup");
 
 		// XMLファイル内の図形描画グループのノードを逐次に渡して処理する。
 		foreach(XmlNode map_drawing_group_xml_node in map_drawing_group_xml_nodes)
@@ -32,15 +35,15 @@ public partial class CMapViewForm : Form
 			//--------------------------------------------------
 			// 地雷原をXMLノードから読み込み、図形描画レイヤに追加する。
 
-			var minefield_impls = DSF_NET_TacticalDrawing.CMineField.ReadMineFields(map_drawing_group_xml_node);
+			var minefield_impls = ReadMineFields(map_drawing_group_xml_node);
 
 			foreach(var minefield_impl in minefield_impls)
 				drawing_layer.Add(new CMineField(minefield_impl));
-
+			
 			//--------------------------------------------------
 			// 防御陣地をXMLノードから読み込み、図形描画レイヤに追加する。
 
-			var defensive_position_impls = DSF_NET_TacticalDrawing.CDefensivePosition.ReadDefensivePositions(map_drawing_group_xml_node);
+			var defensive_position_impls = ReadDefensivePositions(map_drawing_group_xml_node);
 
 			foreach(var defensive_position_impl in defensive_position_impls)
 				drawing_layer.Add(new CDefensivePosition(defensive_position_impl));

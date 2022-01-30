@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" standalone="yes"?>
 
+<!-- PlaneViewerとは別ファイルなので注意 -->
+
 <MapDrawings>
 
 	<MapDrawingGroup
@@ -33,7 +35,7 @@
 		<MineField Type="ATAP" Depth="200" FrontEdgeDirection="RightToLeft">
 			<FrontEdgeNode UTM="52S FC 0680016000"/>
 			<FrontEdgeNode UTM="52S FC 07001600"/>
-			<FrontEdgeNode UTM="52S FC 072160"/>
+			<FrontEdgeNode UTM="52S FC 072162"/>
 			<FrontEdgeNode Lg="130.158" Lt="33.574"/>
 			<FrontEdgeNode Lg="130.162" Lt="33.574"/>
 			<FrontEdgeNode Lg="130.164" Lt="33.576"/>
