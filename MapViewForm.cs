@@ -25,15 +25,15 @@ public partial class CMapViewForm : Form
 {
 	public readonly GSIImageTileMap TileMap;
 
-	bool IsMouseDown = false;
+	private bool IsMouseDown = false;
 
-	Point PrevMousePoint;
+	private Point PrevMousePoint;
 
 	// 地図の操作による描画とその他の理由による描画の排他制御
 	// ◆(フェデレートでない)MapViewでは不要では？図形のロード等があるか？
 	public bool IsDrawingMap = false;
 
-	public CMapViewForm(string[] args)
+	public CMapViewForm(in string[] args)
 	{
 		//-------------------------------------------------------
 
@@ -81,7 +81,7 @@ public partial class CMapViewForm : Form
 		DrawMapImage();
 	}
 
-	void CMapForm_Resize(object sender, EventArgs e)
+	void CMapForm_Resize(Object sender, EventArgs e)
 	{
 		// mapPictureBoxがリサイズされたらGraphicsオブジェクトを新たなサイズで再作成する必要がある。
 		// 再作成しないとリサイズ前の領域にしか描画されない。
@@ -131,7 +131,7 @@ public partial class CMapViewForm : Form
 		IsMouseDown = false;
 	}
 
-	void MapPictureBox_MouseWheel(object sender, MouseEventArgs e)
+	void MapPictureBox_MouseWheel(Object sender, MouseEventArgs e)
 	{
 		if(e.Delta > 0)
 			TileMap.ZoomIn();

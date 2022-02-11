@@ -3,7 +3,7 @@
 <MapViewerCfg>
 
 	<!-- 糸島半島 -->
-	<Center Lg="130 9 0.0" Lt="33 35 0.0"/>
+	<Center Lg="130 9 30.0" Lt="33 34 30.0"/>
 	<!-- 10進 -->
 
 	<!-- 島原半島 -->
@@ -40,5 +40,7 @@
 	<!-- ◆保留 -->
 	<!-- ◆フォルダ内のすべてのファイルを描画するやり方 -->
 	<_DrawingData Folder="C:/DSF/SharedData/MapView/MapDrawing"/>
+
+	<LgLtGrid ZoomLevel="10" Min="20" Color="ff000000" LineWidth="4" FontName="ＭＳ ゴシック" FontSize="24" FontStyle="Bold"/>
 
 </MapViewerCfg>

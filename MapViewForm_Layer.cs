@@ -5,8 +5,8 @@
 //---------------------------------------------------------------------------
 using DSF_NET_Map;
 
-using static DSF_NET_TacticalDrawing.CMineField;
 using static DSF_NET_TacticalDrawing.CDefensivePosition;
+using static DSF_NET_TacticalDrawing.XMLReader;
 
 using System.Collections.Generic;
 using System.Xml;
@@ -17,8 +17,8 @@ namespace MapView_test
 //---------------------------------------------------------------------------
 public partial class CMapViewForm : Form
 {
-	readonly int  DrawingLayer1_Hash =  "DrawingLayer1".GetHashCode();
-	readonly int ObserverLayer1_Hash = "ObserverLayer1".GetHashCode();
+	private readonly int  DrawingLayer1_Hash =  "DrawingLayer1".GetHashCode();
+	private readonly int ObserverLayer1_Hash = "ObserverLayer1".GetHashCode();
 
 	void SetLayers(in XmlNode drawing_xml_node)
 	{
@@ -47,6 +47,14 @@ public partial class CMapViewForm : Form
 
 			foreach(var defensive_position_impl in defensive_position_impls)
 				drawing_layer.Add(new CDefensivePosition(defensive_position_impl));
+
+			//--------------------------------------------------
+			// 特科陣地をXMLノードから読み込み、図形描画レイヤに追加する。
+
+			var firing_position_impls = ReadFiringPositions(map_drawing_group_xml_node);
+
+			foreach(var firing_position_impl in firing_position_impls)
+				drawing_layer.Add(new CFiringPosition(firing_position_impl));
 		}
 
 		TileMap.DrawingLayers.Add(DrawingLayer1_Hash, drawing_layer);

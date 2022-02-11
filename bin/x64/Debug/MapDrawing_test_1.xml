@@ -4,10 +4,10 @@
 
 <MapDrawings>
 
+	<!-- Color : ARGB -->
 	<MapDrawingGroup
 		Color="ff007f00"
 		LineWidth="2">
-		<!-- Color : ARGB -->
 
 		<!-- 地雷原1 -->
 		<MineField Type="ATAP" Depth="100" FrontEdgeDirection="RightToLeft">
@@ -31,7 +31,6 @@
 		</MineField>
 
 		<!-- 地雷原4 -->
-		<!-- ◆072160を間違えて090160とかにしたら明らかにおかしな形状になった。方向が反転？-->
 		<MineField Type="ATAP" Depth="200" FrontEdgeDirection="RightToLeft">
 			<FrontEdgeNode UTM="52S FC 0680016000"/>
 			<FrontEdgeNode UTM="52S FC 07001600"/>
@@ -43,20 +42,42 @@
 
 	</MapDrawingGroup>
 
+	<!-- Color : ARGB -->
 	<MapDrawingGroup
 		Color="ffff0000"
 		LineWidth="2">
-		<!-- Color : ARGB -->
 
 		<!-- 防御陣地1 -->
 		<!-- ◆取り敢えず正面幅,縦深,方向,角の半径を指定 -->
-		<DefensivePosition UnitLevel="Co" DrawType="RoundRect"
+		<!-- ▼簡易陣地も -->
+		<DefensivePosition
+			UnitLevel="Co"
+			DrawType="RoundRect"
 			Width="400"
 			Depth="800"
 			Direction="400"
 			RectR="360">
-			<FrontEdgeNode UTM="52S FC 08501550"/> <!-- 前縁中央 -->
+			<!-- ◆取り敢えず前縁中央 -->
+			<FrontEdgeNode UTM="52S FC 08501550"/>
 		</DefensivePosition>
+
+	</MapDrawingGroup>
+
+	<!-- Color : ARGB -->
+	<MapDrawingGroup
+		Color="ffff0000"
+		LineWidth="2">
+
+		<!-- 特科陣地1 -->
+		<!-- ◆取り敢えず正面幅,縦深,方向を指定 -->
+		<!-- ◆部隊規模は未実装 -->
+		<FiringPosition
+			Width="1200"
+			Depth="300"
+			Direction="2000">
+			<!-- ◆属性でも良さそうだが、経緯度とUTMがあるので読み分けるためにXMLノードにしている。-->
+			<Center UTM="52S FC 07501550"/>
+		</FiringPosition>
 
 	</MapDrawingGroup>
 
