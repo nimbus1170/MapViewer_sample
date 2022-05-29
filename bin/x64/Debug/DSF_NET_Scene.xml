@@ -60,8 +60,11 @@
             <remarks>交差したらcross_pに交点が入る。</remarks>
             <returns>交差の有無</returns>
         </member>
-        <member name="M:DSF_NET_Geometry.CLine.ExtendP1(System.Double!System.Runtime.CompilerServices.IsConst)">
-            <summary>線分をそれぞれの方向に伸縮させる。</summary>
+        <member name="M:DSF_NET_Geometry.CLine.ExtendP1ByRate(System.Double!System.Runtime.CompilerServices.IsConst)">
+            <summary>線分をそれぞれの方向に比率で伸縮させる。</summary>
+        </member>
+        <member name="M:DSF_NET_Geometry.CLine.ExtendP1ByLength(System.Double!System.Runtime.CompilerServices.IsConst)">
+            <summary>線分をそれぞれの方向に長さで伸縮させる。</summary>
         </member>
         <member name="P:DSF_NET_Geometry.CLine.Length2D">
             <summary>線分の長さ</summary>

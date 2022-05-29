@@ -54,10 +54,7 @@ public partial class CMapViewForm : Form
 
 		var map_data_fld = map_cfg_xml.SelectSingleNode("MapViewerCfg/MapData").Attributes["Folder"].InnerText;
 	
-		TileMap = new GSIImageTileMap
-			(ct,
-			 15,
-			 map_data_fld)
+		TileMap = new GSIImageTileMap(ct, 15, map_data_fld)
 			{
 				ToDrawLgLtGrid = toDrawLgLtGridToolStripMenuItem.Checked,
 				ToDrawUTMGrid  = toDrawUTMGridToolStripMenuItem .Checked,
@@ -185,12 +182,143 @@ public partial class CMapViewForm : Form
 
 		TileMap.Draw();
 
+		//--------------------------------------------------
+		// 地図画像の端に経緯度座標(分)を標示する。
+
+		if(TileMap.ToDrawLgLtGrid)
+		{
+			var c_wp_x = TileMap.CenterWP.X;
+			var c_wp_y = TileMap.CenterWP.Y;	
+
+			var mpb_w = mapPictureBox.Width ;
+			var mpb_h = mapPictureBox.Height;
+
+			var zv = TileMap.ZoomValue;
+
+			var s_lg = ToLg(c_wp_x - (mpb_w / 2) / zv);
+			var s_lt = ToLt(c_wp_y - (mpb_h / 2) / zv);
+
+			float font_size = (float)(18 / zv);
+
+		//	var font = new Font("ＭＳ ゴシック", font_size);
+			var font = new Font("Arial Narrow", font_size);
+
+			var last_lg_min = new CDMS(s_lg.DecimalDeg).Min;
+
+			for(int x = 0; x <= mpb_w; ++x)
+			{
+				var lg = ToLg(c_wp_x + (x - mpb_w / 2) / zv);
+
+				var curr_lg_dms =  new CDMS(lg.DecimalDeg);
+				var curr_lg_min =  curr_lg_dms.Min;
+
+				// 経度(分)が変化したらグリッド座標を標示する。
+				if(curr_lg_min == last_lg_min) continue;
+
+				last_lg_min = curr_lg_min;
+
+				TileMap.G.DrawString($"{curr_lg_dms.Deg}°{curr_lg_min:00}′", font, Brushes.Black, new PointF(ToZoomedX(x), ToZoomedY(0)));
+			}
+
+			var last_lt_min = new CDMS(s_lt.DecimalDeg).Min;
+
+			for(int y = 0; y <= mpb_h; ++y)
+			{
+				var lt = ToLt(c_wp_y + (y - mpb_h / 2) / zv);
+
+				var curr_lt_dms =  new CDMS(lt.DecimalDeg);
+				var curr_lt_min =  curr_lt_dms.Min;
+
+				if(curr_lt_min == last_lt_min) continue;
+
+				last_lt_min = curr_lt_min;
+
+				TileMap.G.DrawString($"{curr_lt_dms.Deg}°{curr_lt_min:00}′", font, Brushes.Black, new PointF(ToZoomedX(0), ToZoomedY(y)));
+			}
+		}
+
+		//--------------------------------------------------
+		// 地図画像の端にUTMグリッド座標(km)を標示する。
+
+		if(TileMap.ToDrawUTMGrid)
+		{
+			var c_wp_x = TileMap.CenterWP.X;
+			var c_wp_y = TileMap.CenterWP.Y;	
+
+			var mpb_w = mapPictureBox.Width ;
+			var mpb_h = mapPictureBox.Height;
+
+			var zv = TileMap.ZoomValue;
+
+			var s_lg = ToLg(c_wp_x - (mpb_w / 2) / zv);
+			var s_lt = ToLt(c_wp_y - (mpb_h / 2) / zv);
+
+			var s_utm = ToUTM(new CLgLt(s_lg, s_lt));
+	
+			float font_size = (float)(18 / zv);
+
+		//	var font = new Font("ＭＳ ゴシック", font_size);
+			var font = new Font("Arial Narrow", font_size);
+
+			var last_utm_ew_km = ((int)GetMGRS_EW(s_utm)) / 1000;
+
+			var last_lg_zone = GetLgBand(s_lg);
+
+			for(int x = 0; x <= mpb_w; ++x)
+			{
+				var lg = ToLg(c_wp_x + (x - mpb_w / 2) / zv);
+
+				var utm = ToUTM(new CLgLt(lg, s_lt));
+
+				var curr_utm_ew_km = ((int)GetMGRS_EW(utm)) / 1000;
+
+				// 東西UTM座標(km)が変化したらグリッド座標を標示する。
+				if(curr_utm_ew_km == last_utm_ew_km) continue;
+
+				last_utm_ew_km = curr_utm_ew_km;
+
+				var curr_lg_zone = GetLgBand(lg);
+
+				// 経度帯を越えた際も東西UTM座標(km)が変わるが、そこはグリッドではないので別扱いにする。
+				if(curr_lg_zone != last_lg_zone)
+				{
+					last_lg_zone = curr_lg_zone;
+					continue;
+				}
+
+				TileMap.G.DrawString($"{curr_utm_ew_km:00}", font, Brushes.Maroon, new PointF(ToZoomedX(x), ToZoomedY(0)));
+			}
+
+			var last_utm_ns = ((int)GetMGRS_NS(s_utm)) / 1000;
+
+			for(int y = 0; y <= mpb_h; ++y)
+			{
+				var lt = ToLt(c_wp_y + (y - mpb_h / 2) / zv);
+
+				var utm = ToUTM(new CLgLt(s_lg, lt));
+
+				var curr_utm_ns = ((int)GetMGRS_NS(utm)) / 1000;
+
+				if(curr_utm_ns == last_utm_ns) continue;
+
+				TileMap.G.DrawString($"{curr_utm_ns:00}", font, Brushes.Maroon, new PointF(ToZoomedX(0), ToZoomedY(y)));
+
+				last_utm_ns = curr_utm_ns;
+			}
+		}
+
+		//--------------------------------------------------
+
 		mapPictureBox.Refresh();
 
 		IsDrawingMap = false;
 
 		return true;
 	}
+
+	// ピクチャーボックス上の座標からズームを考慮したタイル上のピクセル座標に変換する。
+	private float ToZoomedX(in float x_in_pb){ return (float)(((TileMap.ZoomValue - 1.0) * mapPictureBox.Width  / 2.0 + x_in_pb) / TileMap.ZoomValue);}
+	private float ToZoomedY(in float y_in_pb){ return (float)(((TileMap.ZoomValue - 1.0) * mapPictureBox.Height / 2.0 + y_in_pb) / TileMap.ZoomValue);}
 
 	private void mapPictureBox_MouseEnter(Object sender, EventArgs e)
 	{
@@ -218,7 +346,7 @@ public partial class CMapViewForm : Form
 		infoLabel.Text =
 			$"中心 {ct_lg.DecimalDeg:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
 			$"　　 {ct_lt.DecimalDeg: 00.0000}N (北緯{ct_lt_dms.Deg: 00}度{ct_lt_dms.Min:00}分{ct_lt_dms.Sec:00.00}秒)\n" +
-			$"　　 {ct_utm.LgBand}{GetLtBand(ToLgLt(ct_utm).Lt)} {GetMGR(ct_utm)} {GetMGRSUTM_EW(ct_utm):00000} {GetMGRSUTM_NS(ct_utm):00000}\n" +
+			$"　　 {ct_utm.LgBand}{GetLtBand(ToLgLt(ct_utm).Lt)} {GetMGRS_ID(ct_utm)} {GetMGRS_EW(ct_utm):00000} {GetMGRS_NS(ct_utm):00000}\n" +
 			$"\n" +
 			$"ズームレベル{ct_wp_x.ZoomLevel} {TileMap.ZoomValue:0.00}倍\n" +
 			$"中心ピクセル {(int)(ct_wp_x.Value)} {(int)(ct_wp_y.Value)}\n" +
@@ -241,7 +369,7 @@ public partial class CMapViewForm : Form
 		mouseLabel.Text =
 			$"{ms_lg.DecimalDeg:000.0000}E (東経{ms_lg_dms.Deg:000}度{ms_lg_dms.Min:00}分{ms_lg_dms.Sec:00.00}秒)\n" +
 			$"{ms_lt.DecimalDeg: 00.0000}N (北緯{ms_lt_dms.Deg: 00}度{ms_lt_dms.Min:00}分{ms_lt_dms.Sec:00.00}秒)\n" +
-			$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGR(ms_utm)} {GetMGRSUTM_EW(ms_utm):00000} {GetMGRSUTM_NS(ms_utm):00000}\n" +
+			$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGRS_ID(ms_utm)} {GetMGRS_EW(ms_utm):00000} {GetMGRS_NS(ms_utm):00000}\n" +
 			$"{e.X:000} {e.Y:000}";
 	}
 }

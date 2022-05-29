@@ -45,10 +45,10 @@
 			// mapPictureBox
 			// 
 			this.mapPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.mapPictureBox.Location = new System.Drawing.Point(0, 36);
+			this.mapPictureBox.Location = new System.Drawing.Point(0, 35);
 			this.mapPictureBox.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
 			this.mapPictureBox.Name = "mapPictureBox";
-			this.mapPictureBox.Size = new System.Drawing.Size(1040, 1179);
+			this.mapPictureBox.Size = new System.Drawing.Size(1040, 1180);
 			this.mapPictureBox.TabIndex = 1;
 			this.mapPictureBox.TabStop = false;
 			this.mapPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapPictureBox_MouseDown);
@@ -61,7 +61,7 @@
 			// 
 			this.infoLabel.AutoSize = true;
 			this.infoLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.infoLabel.Location = new System.Drawing.Point(20, 54);
+			this.infoLabel.Location = new System.Drawing.Point(59, 83);
 			this.infoLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
 			this.infoLabel.Name = "infoLabel";
 			this.infoLabel.Size = new System.Drawing.Size(90, 24);
@@ -71,7 +71,6 @@
 			// 
 			// menuStrip1
 			// 
-			this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
 			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.グリッドToolStripMenuItem,
@@ -79,7 +78,7 @@
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-			this.menuStrip1.Size = new System.Drawing.Size(1040, 36);
+			this.menuStrip1.Size = new System.Drawing.Size(1040, 35);
 			this.menuStrip1.TabIndex = 4;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -89,7 +88,7 @@
             this.toDrawLgLtGridToolStripMenuItem,
             this.toDrawUTMGridToolStripMenuItem});
 			this.グリッドToolStripMenuItem.Name = "グリッドToolStripMenuItem";
-			this.グリッドToolStripMenuItem.Size = new System.Drawing.Size(80, 30);
+			this.グリッドToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
 			this.グリッドToolStripMenuItem.Text = "グリッド";
 			// 
 			// toDrawLgLtGridToolStripMenuItem
@@ -98,7 +97,7 @@
 			this.toDrawLgLtGridToolStripMenuItem.CheckOnClick = true;
 			this.toDrawLgLtGridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toDrawLgLtGridToolStripMenuItem.Name = "toDrawLgLtGridToolStripMenuItem";
-			this.toDrawLgLtGridToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+			this.toDrawLgLtGridToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
 			this.toDrawLgLtGridToolStripMenuItem.Text = "経緯度グリッド";
 			this.toDrawLgLtGridToolStripMenuItem.Click += new System.EventHandler(this.ToDrawLgLtGridToolStripMenuItem_Click);
 			// 
@@ -108,7 +107,7 @@
 			this.toDrawUTMGridToolStripMenuItem.CheckOnClick = true;
 			this.toDrawUTMGridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toDrawUTMGridToolStripMenuItem.Name = "toDrawUTMGridToolStripMenuItem";
-			this.toDrawUTMGridToolStripMenuItem.Size = new System.Drawing.Size(220, 34);
+			this.toDrawUTMGridToolStripMenuItem.Size = new System.Drawing.Size(219, 34);
 			this.toDrawUTMGridToolStripMenuItem.Text = "UTMグリッド";
 			this.toDrawUTMGridToolStripMenuItem.Click += new System.EventHandler(this.ToDrawUTMGridToolStripMenuItem_Click);
 			// 
@@ -118,7 +117,7 @@
             this.mapImageToolStripMenuItem,
             this.photoImageToolStripMenuItem});
 			this.種類ToolStripMenuItem.Name = "種類ToolStripMenuItem";
-			this.種類ToolStripMenuItem.Size = new System.Drawing.Size(64, 30);
+			this.種類ToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
 			this.種類ToolStripMenuItem.Text = "種類";
 			// 
 			// mapImageToolStripMenuItem

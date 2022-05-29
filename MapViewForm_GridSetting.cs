@@ -62,28 +62,28 @@ public partial class CMapViewForm : Form
 			switch(zoom_level)
 			{
 				case 10:
-					utm_grid_elements.Add(50, new CMapGridElement(new Pen(Color.Blue, 4.0f)					  , new Font("ＭＳ ゴシック", 14.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Blue));
+					utm_grid_elements.Add(50, new CMapGridElement(new Pen(Color.Maroon, 4.0f)				   , new Font("ＭＳ ゴシック", 14.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 11:
 				case 12:
-					utm_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Blue, 4.0f)					  , new Font("ＭＳ ゴシック", 12.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Blue));
+					utm_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Maroon, 4.0f)				   , new Font("ＭＳ ゴシック", 12.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 13:
-					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Blue, 2.0f)					  , new Font("ＭＳ ゴシック", 12.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Blue));
+					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Maroon, 2.0f)				   , new Font("ＭＳ ゴシック", 12.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 14:
-					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Blue, 4.0f)					  , new Font("ＭＳ ゴシック", 14.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Blue));
-					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Blue, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 12.0f,				 GraphicsUnit.Pixel), Brushes.Blue));
+					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Maroon, 4.0f)				   , new Font("ＭＳ ゴシック", 14.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Maroon, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 12.0f,				  GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 15:
 				case 16:
 				case 17:
 				case 18:
-					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Blue, 2.0f)					  , new Font("ＭＳ ゴシック", 12.0f,				 GraphicsUnit.Pixel), Brushes.Blue));
+					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Maroon, 2.0f)				   , new Font("ＭＳ ゴシック", 12.0f,				  GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 			};
 
