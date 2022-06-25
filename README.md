@@ -4,4 +4,4 @@
 
 ![image](image.jpg)
 
-詳しくは「MapViewer_sample.pdf」をご覧ください。（作成中）
+詳しくは「MapViewer_sample.pdf」をご覧ください。
