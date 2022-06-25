@@ -21,7 +21,7 @@ mono_crash.*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-#x64/
+x64/
 x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
@@ -34,7 +34,9 @@ bld/
 [Ll]ogs/
 
 # Don't ignore debug binary except gsi data
-bin/x64/Debug/gsi
+bin/Debug/net6.0-windows/gsi/dem_png/*/
+bin/Debug/net6.0-windows/gsi/seamlessphoto/*/
+bin/Debug/net6.0-windows/gsi/std/*/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

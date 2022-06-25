@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "プロファイル 1": {
+      "commandName": "Project",
+      "commandLineArgs": "MapViewer_Cfg_1.xml"
+    }
+  }
+}
