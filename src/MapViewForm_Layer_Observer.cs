@@ -14,6 +14,7 @@ namespace MapView_test
 public partial class CMapViewForm : Form
 {
 	// ’Ê‹”»’èƒŒƒCƒ„
+	// ¥GeoViewer‚Ì‚Æ‹¤’Ê‰»‚µ‚ëB
 	void SetLayers_Observer(in int layer_hash)
 	{
 		// ‰Â–çR’¸
