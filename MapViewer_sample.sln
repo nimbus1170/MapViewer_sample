@@ -37,6 +37,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NET_DLL_Scene", "..\..\Scen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET_DLL_MapGrid", "..\..\Geography\NET_DLL_MapGrid\NET_DLL_MapGrid.csproj", "{B5057CD9-4B1B-43D9-87DE-A989D333038F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSF_dev_src", "..\..\..\..\src\DSF_dev_src.vcxproj", "{21C078AF-DE31-4E48-A987-8A6CDFFFE839}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,24 @@ Global
 		{B5057CD9-4B1B-43D9-87DE-A989D333038F}.Template|x64.Build.0 = Debug|x64
 		{B5057CD9-4B1B-43D9-87DE-A989D333038F}.Template|x86.ActiveCfg = Debug|Any CPU
 		{B5057CD9-4B1B-43D9-87DE-A989D333038F}.Template|x86.Build.0 = Debug|Any CPU
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Debug|Any CPU.Build.0 = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Debug|x64.ActiveCfg = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Debug|x64.Build.0 = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Debug|x86.ActiveCfg = Debug|Win32
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Debug|x86.Build.0 = Debug|Win32
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Release|Any CPU.ActiveCfg = Release|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Release|Any CPU.Build.0 = Release|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Release|x64.ActiveCfg = Release|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Release|x64.Build.0 = Release|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Release|x86.ActiveCfg = Release|Win32
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Release|x86.Build.0 = Release|Win32
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Template|Any CPU.ActiveCfg = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Template|Any CPU.Build.0 = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Template|x64.ActiveCfg = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Template|x64.Build.0 = Debug|x64
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Template|x86.ActiveCfg = Debug|Win32
+		{21C078AF-DE31-4E48-A987-8A6CDFFFE839}.Template|x86.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,7 @@
 using DSF_NET_Geography;
 using DSF_NET_Geometry;
 using DSF_NET_Map;
+using DSF_NET_Profiler;
 
 using static DSF_NET_Geography.Convert_MGRS_UTM;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
@@ -18,6 +19,8 @@ using System.Drawing;
 using System.Runtime.Versioning;
 using System.Xml;
 using System.Windows.Forms;
+
+using static System.Convert;
 //---------------------------------------------------------------------------
 namespace MapView_test
 {
@@ -34,6 +37,9 @@ public partial class CMapViewForm : Form
 	// 地図の操作による描画とその他の理由による描画の排他制御
 	// ◆(フェデレートでない)MapViewでは不要では？図形のロード等があるか？
 	public bool IsDrawingMap = false;
+
+	private readonly CStopWatch StopWatch = new ();
+	private readonly CMemWatch  MemWatch  = new ();
 
 	public CMapViewForm(in string[] args)
 	{
@@ -61,7 +67,10 @@ public partial class CMapViewForm : Form
 				ToDrawLgLtGrid = toDrawLgLtGridToolStripMenuItem.Checked,
 				ToDrawUTMGrid  = toDrawUTMGridToolStripMenuItem .Checked,
 
-				mapType = (mapImageToolStripMenuItem.Checked)? DMapType.IMAGE_MAP: DMapType.PHOTO_MAP
+				mapType = (mapImageToolStripMenuItem.Checked)? DMapType.IMAGE_MAP: DMapType.PHOTO_MAP,
+			
+				StopWatch = StopWatch, // ◆曖昧
+				MemWatch  = MemWatch   // ◆曖昧
 			};
 
 		SetGridSetting();
@@ -88,7 +97,7 @@ public partial class CMapViewForm : Form
 
 		if(TileMap == null) return;
 
-		if(mapPictureBox.Image != null) mapPictureBox.Image.Dispose();
+		mapPictureBox.Image?.Dispose();
 
 		// 新たなサイズのBitmapインスタンスを作成してmapPictureBoxのImageに指定する。
 		mapPictureBox.Image = new Bitmap(mapPictureBox.Width, mapPictureBox.Height);
@@ -176,7 +185,7 @@ public partial class CMapViewForm : Form
 		DrawMapImage();
 	}
 
-	public bool DrawMapImage()
+	private bool DrawMapImage()
 	{
 		if(IsDrawingMap) return false;
 
@@ -230,7 +239,7 @@ public partial class CMapViewForm : Form
 		}
 
 		//--------------------------------------------------
-		// 地図画像の端にUTMグリッド座標(km)を標示する。
+		// 地図画像の端にUTM座標(km)を標示する。
 
 		if(TileMap.ToDrawUTMGrid)
 		{
@@ -365,6 +374,46 @@ public partial class CMapViewForm : Form
 			$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)}   {(int)ms_utm.EW} {(int)ms_utm.NS}\n" +
 			$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGRS_ID(ms_utm)} {GetMGRS_EW(ms_utm):00000}   {GetMGRS_NS(ms_utm):00000}\n" +
 			$"{e.X:000} {e.Y:000}";
+	}
+
+	private void CMapViewForm_FormClosing(Object sender, FormClosingEventArgs e)
+	{
+		StopWatch.Stop();
+		MemWatch .Stop();
+
+		var total_time = StopWatch.TotalTime;
+
+		string msg = "";
+
+		msg += "elapsed times\r\n";
+
+		foreach(var laptimes in StopWatch.LapTimes)
+		{
+			var laptime = laptimes.Value.LapTime;
+
+			var laptime_percentage = ToDouble(laptime) / total_time * 100;
+
+			msg += $"{laptime, 6:#,0}ms ({laptime_percentage, 4:0.0}%)\r\n";
+		}
+
+		msg += $"{total_time, 6:#,0}ms";
+	
+		msg += $"\r\n";
+
+		msg += "memory deltas\r\n";
+
+		foreach(var memdelta in MemWatch.MemDeltas)
+		{
+			msg += $"{memdelta.Value.PhysMem / 1000.0, 9:#,###,###}KB : {memdelta.Key}\r\n";
+		}
+
+	//	DialogTextBox.AppendText($"total {total_time, 6:#,0}ms  {Profiler.TotalMem.PhysMem / 1000.0, 9:#,###,###}KB\r\n");
+	
+		msg += $"{MemWatch.TotalMem.PhysMem / 1000.0, 9:#,###,###}KB : total\r\n";
+	
+		msg += $"\r\n";
+
+		MessageBox.Show(msg, "プロファイル", MessageBoxButtons.OK, MessageBoxIcon.Information);
 	}
 }
 //---------------------------------------------------------------------------

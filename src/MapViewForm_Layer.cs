@@ -27,34 +27,34 @@ public partial class CMapViewForm : Form
 
 		var drawing_layer = new HashSet<CDrawing>();
 
-		var map_drawing_group_xml_nodes = drawing_xml_node.SelectNodes("MapDrawings/MapDrawingGroup");
+		var drawing_groups = drawing_xml_node.SelectNodes("DrawingGroups/DrawingGroup");
 
 		// XMLファイル内の図形描画グループのノードを逐次に渡して処理する。
-		foreach(XmlNode map_drawing_group_xml_node in map_drawing_group_xml_nodes)
+		foreach(XmlNode drawing_group in drawing_groups)
 		{
 			//--------------------------------------------------
 			// 地雷原をXMLノードから読み込み、図形描画レイヤに追加する。
 
-			var minefield_impls = ReadMineFields(map_drawing_group_xml_node);
+			var mf_impls = ReadMineFields(drawing_group);
 
-			foreach(var minefield_impl in minefield_impls)
-				drawing_layer.Add(new CMineField(minefield_impl));
+			foreach(var mf_impl in mf_impls)
+				drawing_layer.Add(new CMineField(mf_impl));
 			
 			//--------------------------------------------------
 			// 防御陣地をXMLノードから読み込み、図形描画レイヤに追加する。
 
-			var defensive_position_impls = ReadDefensivePositions(map_drawing_group_xml_node);
+			var dp_impls = ReadDefensivePositions(drawing_group);
 
-			foreach(var defensive_position_impl in defensive_position_impls)
-				drawing_layer.Add(new CDefensivePosition(defensive_position_impl));
+			foreach(var dp_impl in dp_impls)
+				drawing_layer.Add(new CDefensivePosition(dp_impl));
 
 			//--------------------------------------------------
 			// 特科陣地をXMLノードから読み込み、図形描画レイヤに追加する。
 
-			var firing_position_impls = ReadFiringPositions(map_drawing_group_xml_node);
+			var fp_impls = ReadFiringPositions(drawing_group);
 
-			foreach(var firing_position_impl in firing_position_impls)
-				drawing_layer.Add(new CFiringPosition(firing_position_impl));
+			foreach(var fp_impl in fp_impls)
+				drawing_layer.Add(new CFiringPosition(fp_impl));
 		}
 
 		TileMap.DrawingLayers.Add(DrawingLayer1_Hash, drawing_layer);

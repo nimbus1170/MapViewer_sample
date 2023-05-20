@@ -161,6 +161,7 @@
 			this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
 			this.Name = "CMapViewForm";
 			this.Text = "MapViewer_sample";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CMapViewForm_FormClosing);
 			this.Resize += new System.EventHandler(this.CMapForm_Resize);
 			((System.ComponentModel.ISupportInitialize)(this.mapPictureBox)).EndInit();
 			this.menuStrip1.ResumeLayout(false);

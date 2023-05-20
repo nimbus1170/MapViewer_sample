@@ -25,32 +25,35 @@ public partial class CMapViewForm : Form
 		for(var zoom_level = TileMap.ZoomLevel_Min; zoom_level <= TileMap.ZoomLevel_Max; ++zoom_level)
 		{
 			// 経緯度グリッドを設定する。
+			// ◆英字フォントにすると「°」「′」を半角にできるが、どうにも等幅のものがない。
+
+			var lglt_font = "ＭＳ ゴシック";
 
 			var lglt_grid_elements = new Dictionary<Int32, CMapGridElement>();
 
 			switch(zoom_level)
 			{
 				case 10:
-					lglt_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font(lglt_font, 24.0f,				 GraphicsUnit.Pixel), Brushes.Black));
 					break;
 
 				case 11:
 				case 12:
-					lglt_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add(20, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font(lglt_font, 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
 					break;
 
 				case 13:
 				case 14:
-					lglt_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
-					lglt_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font(lglt_font, 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font(lglt_font, 24.0f,				 GraphicsUnit.Pixel), Brushes.Black));
 					break;
 
 				case 15:
 				case 16:
 				case 17:
 				case 18:
-					lglt_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font("ＭＳ ゴシック", 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
-					lglt_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 24.0f,				   GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Black, 4.0f)					, new Font(lglt_font, 24.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black));
+					lglt_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Black, 2.0f){ DashStyle = Dot }, new Font(lglt_font, 24.0f,				 GraphicsUnit.Pixel), Brushes.Black));
 					break;
 			};
 
@@ -58,33 +61,35 @@ public partial class CMapViewForm : Form
 
 			// UTMグリッドを設定する。
 
+			var utm_font = "ＭＳ ゴシック";
+
 			var utm_grid_elements = new Dictionary<Int32, CMapGridElement>();
 
 			switch(zoom_level)
 			{
 				case 10:
-					utm_grid_elements.Add(50, new CMapGridElement(new Pen(Color.Maroon, 4.0f)					, new Font("ＭＳ ゴシック", 18.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add(50, new CMapGridElement(new Pen(Color.Maroon, 4.0f)					, new Font(utm_font, 18.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 11:
 				case 12:
-					utm_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Maroon, 4.0f)					, new Font("ＭＳ ゴシック", 16.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add(10, new CMapGridElement(new Pen(Color.Maroon, 4.0f)					, new Font(utm_font, 16.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 13:
-					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Maroon, 2.0f)					, new Font("ＭＳ ゴシック", 16.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Maroon, 2.0f)					, new Font(utm_font, 16.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 14:
-					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Maroon, 4.0f)					, new Font("ＭＳ ゴシック", 18.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
-					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Maroon, 2.0f){ DashStyle = Dot }, new Font("ＭＳ ゴシック", 16.0f,				   GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add( 5, new CMapGridElement(new Pen(Color.Maroon, 4.0f)					, new Font(utm_font, 18.0f, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Maroon, 2.0f){ DashStyle = Dot }, new Font(utm_font, 16.0f,					GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 
 				case 15:
 				case 16:
 				case 17:
 				case 18:
-					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Maroon, 2.0f)					, new Font("ＭＳ ゴシック", 16.0f,				   GraphicsUnit.Pixel), Brushes.Maroon));
+					utm_grid_elements.Add( 1, new CMapGridElement(new Pen(Color.Maroon, 2.0f)					, new Font(utm_font, 16.0f,					GraphicsUnit.Pixel), Brushes.Maroon));
 					break;
 			};
 
