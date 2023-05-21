@@ -7,6 +7,8 @@ using DSF_NET_Geometry;
 using DSF_NET_Map;
 using DSF_NET_Profiler;
 
+using static DSF_CS_Profiler.CProfilerLog;
+
 using static DSF_NET_Geography.Convert_MGRS_UTM;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_Geography.Convert_LgLt_WP;
@@ -381,36 +383,12 @@ public partial class CMapViewForm : Form
 		StopWatch.Stop();
 		MemWatch .Stop();
 
-		var total_time = StopWatch.TotalTime;
-
 		string msg = "";
 
-		msg += "elapsed times\r\n";
-
-		foreach(var laptimes in StopWatch.LapTimes)
-		{
-			var laptime = laptimes.Value.LapTime;
-
-			var laptime_percentage = ToDouble(laptime) / total_time * 100;
-
-			msg += $"{laptime, 6:#,0}ms ({laptime_percentage, 4:0.0}%)\r\n";
-		}
-
-		msg += $"{total_time, 6:#,0}ms";
-	
+		msg += MakeStopWatchLog(StopWatch);
 		msg += $"\r\n";
 
-		msg += "memory deltas\r\n";
-
-		foreach(var memdelta in MemWatch.MemDeltas)
-		{
-			msg += $"{memdelta.Value.PhysMem / 1000.0, 9:#,###,###}KB : {memdelta.Key}\r\n";
-		}
-
-	//	DialogTextBox.AppendText($"total {total_time, 6:#,0}ms  {Profiler.TotalMem.PhysMem / 1000.0, 9:#,###,###}KB\r\n");
-	
-		msg += $"{MemWatch.TotalMem.PhysMem / 1000.0, 9:#,###,###}KB : total\r\n";
-	
+		msg += MakeMemWatchLog(MemWatch);
 		msg += $"\r\n";
 
 		MessageBox.Show(msg, "プロファイル", MessageBoxButtons.OK, MessageBoxIcon.Information);
