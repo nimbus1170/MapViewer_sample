@@ -97,6 +97,9 @@ public partial class CMapViewForm : Form
 		// 再作成しないとリサイズ前の領域にしか描画されない。
 		// Graphicsオブジェクトをリサイズすることはできない。
 
+		// ◆最小化等された場合もあるので例外ではない。
+		if((mapPictureBox.Width <= 0) || (mapPictureBox.Height <= 0)) return;
+
 		if(TileMap == null) return;
 
 		mapPictureBox.Image?.Dispose();
