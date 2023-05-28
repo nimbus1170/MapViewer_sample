@@ -383,7 +383,7 @@ public partial class CMapViewForm : Form
 
 	private void CMapViewForm_FormClosing(Object sender, FormClosingEventArgs e)
 	{
-		StopWatch.Stop();
+/*		StopWatch.Stop();
 		MemWatch .Stop();
 
 		string msg = "";
@@ -395,7 +395,7 @@ public partial class CMapViewForm : Form
 		msg += $"\r\n";
 
 		MessageBox.Show(msg, "プロファイル", MessageBoxButtons.OK, MessageBoxIcon.Information);
-	}
+*/	}
 }
 //---------------------------------------------------------------------------
 }
