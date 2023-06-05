@@ -33,8 +33,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="bin\**" />
+    <Compile Remove="shared_src\**" />
     <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="shared_src\**" />
     <None Remove="bin\**" />
+    <None Remove="shared_src\**" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DSF_NET_GSIImageTileMap">
@@ -42,6 +45,9 @@
     </Reference>
     <Reference Include="DSF_NET_MapGridOnTile">
       <HintPath>bin\Debug\net6.0-windows\DSF_NET_MapGridOnTile.dll</HintPath>
+    </Reference>
+    <Reference Include="DSF_NET_ProfilerLog">
+      <HintPath>bin\Debug\net6.0-windows\DSF_NET_ProfilerLog.dll</HintPath>
     </Reference>
     <Reference Include="DSF_NET_Scene">
       <HintPath>bin\Debug\net6.0-windows\DSF_NET_Scene.dll</HintPath>
@@ -53,7 +59,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="bin\Debug\net6.0-windows\MapDrawing_test_1.xml" />
-    <Content Include="bin\Debug\net6.0-windows\MapViewerCfg_1.xml" />
+    <Content Include="bin\Debug\net6.0-windows\MapViewerCfg.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -66,9 +72,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\..\..\src\cs\DSF\Profiler\ProfilerLog.cs" Link="shared_src\ProfilerLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.326103">
@@ -88,8 +91,5 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="shared_src\" />
   </ItemGroup>
 </Project>
