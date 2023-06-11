@@ -54,7 +54,7 @@ namespace MapView_test
 
 			var map_cfg_xml = new XmlDocument();
 
-			map_cfg_xml.Load(args[0]);
+			map_cfg_xml.Load((args.Length == 0)? "MapViewerCfg.xml": args[0]);
 
 			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center")) ?? throw new Exception("map center is not defined.");
 
