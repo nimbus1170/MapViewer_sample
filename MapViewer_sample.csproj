@@ -39,7 +39,6 @@
   <ItemGroup>
     <Reference Include="DSF_NET_GSIImageTileMap">
       <HintPath>..\..\..\..\lib\Debug\net6.0-windows\DSF_NET_GSIImageTileMap.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="DSF_NET_MapGridOnTile">
       <HintPath>..\..\..\..\lib\Debug\net6.0-windows\DSF_NET_MapGridOnTile.dll</HintPath>
@@ -50,8 +49,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DSF_NET_Scene">
-      <HintPath>..\..\..\..\lib\Debug\clr\DSF_NET_Scene.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\lib\Debug\net6.0-windows\DSF_NET_Scene.dll</HintPath>
     </Reference>
     <Reference Include="DSF_NET_TacticalDrawing">
       <HintPath>..\..\..\..\lib\Debug\net6.0\DSF_NET_TacticalDrawing.dll</HintPath>
