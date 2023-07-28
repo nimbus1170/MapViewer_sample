@@ -10,7 +10,7 @@ using DSF_NET_Profiler;
 using static DSF_NET_Geography.Convert_MGRS_UTM;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_Geography.Convert_LgLt_WP;
-
+using static DSF_NET_Geography.DAltitudeBase;
 using static DSF_NET_Geography.XMapTile;
 using static DSF_NET_TacticalDrawing.XMLReader;
 
@@ -56,7 +56,7 @@ namespace MapView_test
 
 			map_cfg_xml.Load((args.Length == 0)? "MapViewerCfg.xml": args[0]);
 
-			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center")) ?? throw new Exception("map center is not defined.");
+			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center"))?? throw new Exception("map center is not defined.");
 
 			var map_data_fld = map_cfg_xml.SelectSingleNode("MapViewerCfg/MapData").Attributes["Folder"].InnerText;
 
@@ -255,7 +255,7 @@ namespace MapView_test
 				var s_lg = ToLg(c_wp_x - (mpb_w / 2) / zv);
 				var s_lt = ToLt(c_wp_y - (mpb_h / 2) / zv);
 
-				var s_utm = ToUTM(new CLgLt(s_lg, s_lt));
+				var s_utm = ToUTM(new CLgLt(s_lg, s_lt, AE));
 
 				float font_size = (float)(18 / zv);
 
@@ -270,7 +270,7 @@ namespace MapView_test
 				{
 					var lg = ToLg(c_wp_x + (x - mpb_w / 2) / zv);
 
-					var curr_utm_ew_km = ((int)GetMGRS_EW(ToUTM(new CLgLt(lg, s_lt)))) / 1000;
+					var curr_utm_ew_km = ((int)GetMGRS_EW(ToUTM(new CLgLt(lg, s_lt, AE)))) / 1000;
 
 					// 東西UTM座標(km)が変化したらグリッド座標を標示する。
 					if (curr_utm_ew_km == last_utm_ew_km) continue;
@@ -295,7 +295,7 @@ namespace MapView_test
 				{
 					var lt = ToLt(c_wp_y + (y - mpb_h / 2) / zv);
 
-					var curr_utm_ns = ((int)GetMGRS_NS(ToUTM(new CLgLt(s_lg, lt)))) / 1000;
+					var curr_utm_ns = ((int)GetMGRS_NS(ToUTM(new CLgLt(s_lg, lt, AE)))) / 1000;
 
 					if(curr_utm_ns == last_utm_ns) continue;
 
@@ -340,7 +340,7 @@ namespace MapView_test
 			var ct_lg_dms = new CDMS(ct_lg.DecimalDeg);
 			var ct_lt_dms = new CDMS(ct_lt.DecimalDeg);
 
-			var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt));
+			var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt, AGL));
 
 			infoLabel.Text =
 				$"中心 {ct_lg.DecimalDeg:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
@@ -365,7 +365,7 @@ namespace MapView_test
 			var ms_lg_dms = new CDMS(ms_lg.DecimalDeg);
 			var ms_lt_dms = new CDMS(ms_lt.DecimalDeg);
 
-			var ms_utm = ToUTM(new CLgLt(ms_lg, ms_lt));
+			var ms_utm = ToUTM(new CLgLt(ms_lg, ms_lt, AGL));
 
 			mouseLabel.Text =
 				$"{ms_lg.DecimalDeg:000.0000}E (東経{ms_lg_dms.Deg:000}度{ms_lg_dms.Min:00}分{ms_lg_dms.Sec:00.00}秒)\n" +

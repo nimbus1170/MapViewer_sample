@@ -12,8 +12,7 @@
           "Microsoft.Windows.Compatibility": "6.0.0",
           "DSF_NET_GSIImageTileMap": "1.0.0.0",
           "DSF_NET_MapGridOnTile": "1.0.0.0",
-          "DSF_NET_ProfilerLog": "1.0.0.0",
-          "DSF_NET_Scene": "1.0.8570.21900",
+          "DSF_NET_Scene": "1.0.8605.19961",
           "DSF_NET_TacticalDrawing": "1.0.0.0"
         },
         "runtime": {
@@ -727,18 +726,10 @@
           }
         }
       },
-      "DSF_NET_ProfilerLog/1.0.0.0": {
-        "runtime": {
-          "DSF_NET_ProfilerLog.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "DSF_NET_Scene/1.0.8570.21900": {
+      "DSF_NET_Scene/1.0.8605.19961": {
         "runtime": {
           "DSF_NET_Scene.dll": {
-            "assemblyVersion": "1.0.8570.21900",
+            "assemblyVersion": "1.0.8605.19961",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1175,12 +1166,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DSF_NET_ProfilerLog/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DSF_NET_Scene/1.0.8570.21900": {
+    "DSF_NET_Scene/1.0.8605.19961": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -52,8 +52,7 @@
       <HintPath>..\..\..\..\lib\Debug\net6.0-windows\DSF_NET_Scene.dll</HintPath>
     </Reference>
     <Reference Include="DSF_NET_TacticalDrawing">
-      <HintPath>..\..\..\..\lib\Debug\net6.0\DSF_NET_TacticalDrawing.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\lib\Debug\net6.0-windows\DSF_NET_TacticalDrawing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
