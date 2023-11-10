@@ -11,7 +11,7 @@ using static DSF_NET_Geography.Convert_MGRS_UTM;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_Geography.Convert_LgLt_WP;
 using static DSF_NET_Geography.DAltitudeBase;
-using static DSF_NET_Geography.XMapTile;
+//using static DSF_NET_Geography.XMapTile;
 using static DSF_NET_TacticalDrawing.XMLReader;
 
 using System;
@@ -26,7 +26,7 @@ namespace MapView_test
 {
 	//---------------------------------------------------------------------------
 	[SupportedOSPlatform("windows")]
-	public partial class CMapViewForm : Form
+	public partial class CMapViewForm :Form
 	{
 		public readonly GSIImageTileMap TileMap;
 
@@ -39,7 +39,7 @@ namespace MapView_test
 		public bool IsDrawingMap = false;
 
 		private readonly CStopWatch StopWatch = new();
-		private readonly CMemWatch  MemWatch  = new();
+		private readonly CMemWatch MemWatch = new();
 
 		public CMapViewForm(in string[] args)
 		{
@@ -54,9 +54,9 @@ namespace MapView_test
 
 			var map_cfg_xml = new XmlDocument();
 
-			map_cfg_xml.Load((args.Length == 0)? "MapViewerCfg.xml": args[0]);
+			map_cfg_xml.Load((args.Length == 0) ? "MapViewerCfg.xml" : args[0]);
 
-			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center"))?? throw new Exception("map center is not defined.");
+			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center")) ?? throw new Exception("map center is not defined.");
 
 			var map_data_fld = map_cfg_xml.SelectSingleNode("MapViewerCfg/MapData").Attributes["Folder"].InnerText;
 
@@ -68,7 +68,7 @@ namespace MapView_test
 				mapType = (mapImageToolStripMenuItem.Checked) ? DMapType.IMAGE_MAP : DMapType.PHOTO_MAP,
 
 				StopWatch = StopWatch, // ◆曖昧
-				MemWatch  = MemWatch   // ◆曖昧
+				MemWatch = MemWatch   // ◆曖昧
 			};
 
 			SetGridSetting();
@@ -120,7 +120,7 @@ namespace MapView_test
 		void MapPictureBox_MouseMove(Object sender, MouseEventArgs e)
 		{
 			mouseLabel.Left = e.X + 10;
-			mouseLabel.Top  = e.Y + 40;
+			mouseLabel.Top = e.Y + 40;
 
 			UpdateMouseInfo(e);
 
@@ -255,7 +255,7 @@ namespace MapView_test
 				var s_lg = ToLg(c_wp_x - (mpb_w / 2) / zv);
 				var s_lt = ToLt(c_wp_y - (mpb_h / 2) / zv);
 
-				var s_utm = ToUTM(new CLgLt(s_lg, s_lt, AE));
+				var s_utm = ToUTM(new CLgLt(s_lg, s_lt, AE, 0.0));
 
 				float font_size = (float)(18 / zv);
 
@@ -270,10 +270,10 @@ namespace MapView_test
 				{
 					var lg = ToLg(c_wp_x + (x - mpb_w / 2) / zv);
 
-					var curr_utm_ew_km = ((int)GetMGRS_EW(ToUTM(new CLgLt(lg, s_lt, AE)))) / 1000;
+					var curr_utm_ew_km = ((int)GetMGRS_EW(ToUTM(new CLgLt(lg, s_lt, AE, 0.0)))) / 1000;
 
 					// 東西UTM座標(km)が変化したらグリッド座標を標示する。
-					if (curr_utm_ew_km == last_utm_ew_km) continue;
+					if(curr_utm_ew_km == last_utm_ew_km) continue;
 
 					last_utm_ew_km = curr_utm_ew_km;
 
@@ -295,7 +295,7 @@ namespace MapView_test
 				{
 					var lt = ToLt(c_wp_y + (y - mpb_h / 2) / zv);
 
-					var curr_utm_ns = ((int)GetMGRS_NS(ToUTM(new CLgLt(s_lg, lt, AE)))) / 1000;
+					var curr_utm_ns = ((int)GetMGRS_NS(ToUTM(new CLgLt(s_lg, lt, AE, 0.0)))) / 1000;
 
 					if(curr_utm_ns == last_utm_ns) continue;
 
@@ -316,8 +316,8 @@ namespace MapView_test
 		}
 
 		// ピクチャーボックス上の座標からズームを考慮したタイル上のピクセル座標に変換する。
-		private float ToZoomedX(in float x_in_pb){ return (float)(((TileMap.ZoomValue - 1.0) * mapPictureBox.Width  / 2.0 + x_in_pb) / TileMap.ZoomValue); }
-		private float ToZoomedY(in float y_in_pb){ return (float)(((TileMap.ZoomValue - 1.0) * mapPictureBox.Height / 2.0 + y_in_pb) / TileMap.ZoomValue); }
+		private float ToZoomedX(in float x_in_pb) { return (float)(((TileMap.ZoomValue - 1.0) * mapPictureBox.Width / 2.0 + x_in_pb) / TileMap.ZoomValue); }
+		private float ToZoomedY(in float y_in_pb) { return (float)(((TileMap.ZoomValue - 1.0) * mapPictureBox.Height / 2.0 + y_in_pb) / TileMap.ZoomValue); }
 
 		private void MapPictureBox_MouseEnter(Object sender, EventArgs e)
 		{
@@ -340,16 +340,16 @@ namespace MapView_test
 			var ct_lg_dms = new CDMS(ct_lg.DecimalDeg);
 			var ct_lt_dms = new CDMS(ct_lt.DecimalDeg);
 
-			var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt, AGL));
+			var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt, AGL, 0.0));
 
 			infoLabel.Text =
 				$"中心 {ct_lg.DecimalDeg:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
 				$"　　 {ct_lt.DecimalDeg: 00.0000}N (北緯{ct_lt_dms.Deg: 00}度{ct_lt_dms.Min:00}分{ct_lt_dms.Sec:00.00}秒)\n" +
-				$"　　 {ct_utm.LgBand}{((ct_utm.Hemi == DHemi.N)? "n": "s")}   {(int)ct_utm.EW} {(int)ct_utm.NS}\n" +
+				$"　　 {ct_utm.LgBand}{((ct_utm.Hemi == DHemi.N) ? "n" : "s")}   {(int)ct_utm.EW} {(int)ct_utm.NS}\n" +
 				$"　　 {ct_utm.LgBand}{GetLtBand(ToLgLt(ct_utm).Lt)} {GetMGRS_ID(ct_utm)} {GetMGRS_EW(ct_utm):00000}   {GetMGRS_NS(ct_utm):00000}\n" +
 				$"ズームレベル{ct_wp_x.ZoomLevel} {TileMap.ZoomValue:0.00}倍\n" +
 				$"中心ピクセル {(int)(ct_wp_x.Value)} {(int)(ct_wp_y.Value)}\n" +
-				$"中心タイル {GetTileX(ct_wp_x).Value} {GetTileY(ct_wp_y).Value}\n" +
+				//				$"中心タイル {GetTileX(ct_wp_x).Value} {GetTileY(ct_wp_y).Value}\n" +
 				$"ウインドウサイズ {mapPictureBox.Width:000} x {mapPictureBox.Height:000}";
 
 			Text =
@@ -359,18 +359,18 @@ namespace MapView_test
 		public void UpdateMouseInfo(MouseEventArgs e)
 		{
 			// マウス位置のピクセル座標は、中心座標にマウス位置の中心座標からの差分を加えたもの。
-			var ms_lg = ToLg(TileMap.CenterWP.X + (e.X - mapPictureBox.Width  / 2) / TileMap.ZoomValue);
+			var ms_lg = ToLg(TileMap.CenterWP.X + (e.X - mapPictureBox.Width / 2) / TileMap.ZoomValue);
 			var ms_lt = ToLt(TileMap.CenterWP.Y + (e.Y - mapPictureBox.Height / 2) / TileMap.ZoomValue);
 
 			var ms_lg_dms = new CDMS(ms_lg.DecimalDeg);
 			var ms_lt_dms = new CDMS(ms_lt.DecimalDeg);
 
-			var ms_utm = ToUTM(new CLgLt(ms_lg, ms_lt, AGL));
+			var ms_utm = ToUTM(new CLgLt(ms_lg, ms_lt, AGL, 0.0));
 
 			mouseLabel.Text =
 				$"{ms_lg.DecimalDeg:000.0000}E (東経{ms_lg_dms.Deg:000}度{ms_lg_dms.Min:00}分{ms_lg_dms.Sec:00.00}秒)\n" +
 				$"{ms_lt.DecimalDeg: 00.0000}N (北緯{ms_lt_dms.Deg: 00}度{ms_lt_dms.Min:00}分{ms_lt_dms.Sec:00.00}秒)\n" +
-				$"{ms_utm.LgBand}{((ms_utm.Hemi == DHemi.N)? "n": "s")}   {(int)ms_utm.EW} {(int)ms_utm.NS}\n" +
+				$"{ms_utm.LgBand}{((ms_utm.Hemi == DHemi.N) ? "n" : "s")}   {(int)ms_utm.EW} {(int)ms_utm.NS}\n" +
 				$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGRS_ID(ms_utm)} {GetMGRS_EW(ms_utm):00000}   {GetMGRS_NS(ms_utm):00000}\n" +
 				$"{e.X:000} {e.Y:000}";
 		}

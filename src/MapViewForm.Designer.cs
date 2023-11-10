@@ -13,7 +13,7 @@
 		/// <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && (components != null))
+			if(disposing && (components != null))
 			{
 				components.Dispose();
 			}
@@ -61,7 +61,7 @@
 			// 
 			infoLabel.AutoSize = true;
 			infoLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			infoLabel.Location = new System.Drawing.Point(59, 115);
+			infoLabel.Location = new System.Drawing.Point(59, 81);
 			infoLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
 			infoLabel.Name = "infoLabel";
 			infoLabel.Size = new System.Drawing.Size(90, 24);

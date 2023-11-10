@@ -20,10 +20,10 @@ public partial class CMapViewForm : Form
 	void SetLayers_Observer(in int layer_hash)
 	{
 		// 可也山頂
-		var obs_p  = new CLgLt(new CLg(130.1611), new CLt(33.5722), AE);
+		var obs_p  = new CLgLt(new CLg(130.1611), new CLt(33.5722), AE, 0.0);
 
-		var area_s = new CLgLt(new CLg(130.1500), new CLt(33.5650), AE); 
-		var area_e = new CLgLt(new CLg(130.1550), new CLt(33.5700), AE); 
+		var area_s = new CLgLt(new CLg(130.1500), new CLt(33.5650), AE, 0.0); 
+		var area_e = new CLgLt(new CLg(130.1550), new CLt(33.5700), AE, 0.0); 
 		
 		// ◆テスト用
 	//	var area_s = new CLgLt(new CLg(130.1611), new CLt(33.5722)); 
