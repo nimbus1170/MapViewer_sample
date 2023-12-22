@@ -37,6 +37,8 @@
 			種類ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			mapImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			photoImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			JPXYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			OriginToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
 			mouseLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)mapPictureBox).BeginInit();
 			menuStrip1.SuspendLayout();
@@ -60,7 +62,7 @@
 			// infoLabel
 			// 
 			infoLabel.AutoSize = true;
-			infoLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			infoLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
 			infoLabel.Location = new System.Drawing.Point(59, 81);
 			infoLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
 			infoLabel.Name = "infoLabel";
@@ -72,7 +74,7 @@
 			// menuStrip1
 			// 
 			menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-			menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { グリッドToolStripMenuItem, 種類ToolStripMenuItem });
+			menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { グリッドToolStripMenuItem, 種類ToolStripMenuItem, JPXYToolStripMenuItem });
 			menuStrip1.Location = new System.Drawing.Point(0, 0);
 			menuStrip1.Name = "menuStrip1";
 			menuStrip1.Padding = new System.Windows.Forms.Padding(10, 4, 0, 4);
@@ -130,10 +132,25 @@
 			photoImageToolStripMenuItem.Text = "衛星画像";
 			photoImageToolStripMenuItem.Click += PhotoImageToolStripMenuItem_Click;
 			// 
+			// JPXYToolStripMenuItem
+			// 
+			JPXYToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { OriginToolStripComboBox });
+			JPXYToolStripMenuItem.Name = "JPXYToolStripMenuItem";
+			JPXYToolStripMenuItem.Size = new System.Drawing.Size(136, 29);
+			JPXYToolStripMenuItem.Text = "平面直角座標";
+			// 
+			// OriginToolStripComboBox
+			// 
+			OriginToolStripComboBox.Items.AddRange(new object[] { "Ⅰ系", "Ⅱ系", "Ⅲ系", "Ⅳ系", "Ⅴ系", "Ⅵ系", "Ⅶ系", "Ⅷ系", "Ⅸ系", "Ⅹ系", "Ⅺ系", "Ⅻ系", "XIII系" });
+			OriginToolStripComboBox.Name = "OriginToolStripComboBox";
+			OriginToolStripComboBox.Size = new System.Drawing.Size(121, 33);
+			OriginToolStripComboBox.Text = "Ⅰ系";
+			OriginToolStripComboBox.Click += OriginToolStripComboBox_Click;
+			// 
 			// mouseLabel
 			// 
 			mouseLabel.AutoSize = true;
-			mouseLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			mouseLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
 			mouseLabel.Location = new System.Drawing.Point(472, 300);
 			mouseLabel.Name = "mouseLabel";
 			mouseLabel.Size = new System.Drawing.Size(62, 18);
@@ -174,5 +191,7 @@
 		private System.Windows.Forms.ToolStripMenuItem mapImageToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem photoImageToolStripMenuItem;
 		private System.Windows.Forms.Label mouseLabel;
+		private System.Windows.Forms.ToolStripMenuItem JPXYToolStripMenuItem;
+		private System.Windows.Forms.ToolStripComboBox OriginToolStripComboBox;
 	}
 }

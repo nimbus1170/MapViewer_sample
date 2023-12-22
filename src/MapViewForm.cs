@@ -10,6 +10,7 @@ using DSF_NET_Profiler;
 using static DSF_NET_Geography.Convert_MGRS_UTM;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_Geography.Convert_LgLt_WP;
+using static DSF_NET_Geography.Convert_LgLt_XY;
 using static DSF_NET_Geography.DAltitudeBase;
 //using static DSF_NET_Geography.XMapTile;
 using static DSF_NET_TacticalDrawing.XMLReader;
@@ -57,6 +58,18 @@ namespace MapView_test
 			map_cfg_xml.Load((args.Length == 0) ? "MapViewerCfg.xml" : args[0]);
 
 			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center")) ?? throw new Exception("map center is not defined.");
+
+			var xy_origin = (map_cfg_xml.SelectSingleNode("MapViewerCfg/Center").Attributes["XYOrigin"] != null)? Convert.ToInt32(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center").Attributes["XYOrigin"].Value): 1;
+
+			
+			
+			
+			OriginToolStripComboBox.SelectedIndex = xy_origin - 1;
+
+			Convert_LgLt_XY.Origin = Convert_LgLt_XY.Origins[xy_origin];
+
+
+
 
 			var map_data_fld = map_cfg_xml.SelectSingleNode("MapViewerCfg/MapData").Attributes["Folder"].InnerText;
 
@@ -342,14 +355,19 @@ namespace MapView_test
 
 			var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt, AGL, 0.0));
 
+			var origin_name = Convert_LgLt_XY.Origin.Name;
+			var ct_jpxy = Convert_LgLt_XY.ToXY(new CLgLt(ct_lg, ct_lt));
+
 			infoLabel.Text =
 				$"中心 {ct_lg.DecimalDeg:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
 				$"　　 {ct_lt.DecimalDeg: 00.0000}N (北緯{ct_lt_dms.Deg: 00}度{ct_lt_dms.Min:00}分{ct_lt_dms.Sec:00.00}秒)\n" +
 				$"　　 {ct_utm.LgBand}{((ct_utm.Hemi == DHemi.N) ? "n" : "s")}   {(int)ct_utm.EW} {(int)ct_utm.NS}\n" +
 				$"　　 {ct_utm.LgBand}{GetLtBand(ToLgLt(ct_utm).Lt)} {GetMGRS_ID(ct_utm)} {GetMGRS_EW(ct_utm):00000}   {GetMGRS_NS(ct_utm):00000}\n" +
+				$"　　 {origin_name}系 {ct_jpxy.X:#,0.00} {ct_jpxy.Y:#,0.00}\n" +
 				$"ズームレベル{ct_wp_x.ZoomLevel} {TileMap.ZoomValue:0.00}倍\n" +
 				$"中心ピクセル {(int)(ct_wp_x.Value)} {(int)(ct_wp_y.Value)}\n" +
-				//				$"中心タイル {GetTileX(ct_wp_x).Value} {GetTileY(ct_wp_y).Value}\n" +
+//				$"中心タイル {GetTileX(ct_wp_x).Value} {GetTileY(ct_wp_y).Value}\n" +
+
 				$"ウインドウサイズ {mapPictureBox.Width:000} x {mapPictureBox.Height:000}";
 
 			Text =
@@ -373,6 +391,13 @@ namespace MapView_test
 				$"{ms_utm.LgBand}{((ms_utm.Hemi == DHemi.N) ? "n" : "s")}   {(int)ms_utm.EW} {(int)ms_utm.NS}\n" +
 				$"{ms_utm.LgBand}{GetLtBand(ToLgLt(ms_utm).Lt)} {GetMGRS_ID(ms_utm)} {GetMGRS_EW(ms_utm):00000}   {GetMGRS_NS(ms_utm):00000}\n" +
 				$"{e.X:000} {e.Y:000}";
+		}
+
+		private void OriginToolStripComboBox_Click(object sender, EventArgs e)
+		{
+			var xy_origin = OriginToolStripComboBox.SelectedIndex + 1;
+
+			Convert_LgLt_XY.Origin = Convert_LgLt_XY.Origins[xy_origin];
 		}
 	}
 	//---------------------------------------------------------------------------
