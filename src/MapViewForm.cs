@@ -10,7 +10,7 @@ using DSF_NET_Profiler;
 using static DSF_NET_Geography.Convert_MGRS_UTM;
 using static DSF_NET_Geography.Convert_LgLt_UTM;
 using static DSF_NET_Geography.Convert_LgLt_WP;
-using static DSF_NET_Geography.Convert_LgLt_XY;
+using static DSF_NET_Geography.Convert_LgLt_JPXY;
 using static DSF_NET_Geography.DAltitudeBase;
 //using static DSF_NET_Geography.XMapTile;
 using static DSF_NET_TacticalDrawing.XMLReader;
@@ -59,14 +59,14 @@ namespace MapView_test
 
 			var ct = ReadLgLt(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center")) ?? throw new Exception("map center is not defined.");
 
-			var xy_origin = (map_cfg_xml.SelectSingleNode("MapViewerCfg/Center").Attributes["XYOrigin"] != null)? Convert.ToInt32(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center").Attributes["XYOrigin"].Value): 1;
+			var jpxy_origin = (map_cfg_xml.SelectSingleNode("MapViewerCfg/Center").Attributes["JPXYOrigin"] != null)? Convert.ToInt32(map_cfg_xml.SelectSingleNode("MapViewerCfg/Center").Attributes["JPXYOrigin"].Value): 1;
 
 			
 			
 			
-			OriginToolStripComboBox.SelectedIndex = xy_origin - 1;
+			OriginToolStripComboBox.SelectedIndex = jpxy_origin - 1;
 
-			Convert_LgLt_XY.Origin = Convert_LgLt_XY.Origins[xy_origin];
+			Convert_LgLt_JPXY.Origin = Convert_LgLt_JPXY.Origins[jpxy_origin];
 
 
 
@@ -355,8 +355,8 @@ namespace MapView_test
 
 			var ct_utm = ToUTM(new CLgLt(ct_lg, ct_lt, AGL, 0.0));
 
-			var origin_name = Convert_LgLt_XY.Origin.Name;
-			var ct_jpxy = Convert_LgLt_XY.ToXY(new CLgLt(ct_lg, ct_lt));
+			var origin_name = Convert_LgLt_JPXY.Origin.Name;
+			var ct_jpxy = Convert_LgLt_JPXY.ToJPXY(new CLgLt(ct_lg, ct_lt));
 
 			infoLabel.Text =
 				$"中心 {ct_lg.DecimalDeg:000.0000}E (東経{ct_lg_dms.Deg:000}度{ct_lg_dms.Min:00}分{ct_lg_dms.Sec:00.00}秒)\n" +
@@ -395,9 +395,9 @@ namespace MapView_test
 
 		private void OriginToolStripComboBox_Click(object sender, EventArgs e)
 		{
-			var xy_origin = OriginToolStripComboBox.SelectedIndex + 1;
+			var jpxy_origin = OriginToolStripComboBox.SelectedIndex + 1;
 
-			Convert_LgLt_XY.Origin = Convert_LgLt_XY.Origins[xy_origin];
+			Convert_LgLt_JPXY.Origin = Convert_LgLt_JPXY.Origins[jpxy_origin];
 		}
 	}
 	//---------------------------------------------------------------------------
